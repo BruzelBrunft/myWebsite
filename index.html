@@ -7,7 +7,7 @@
 <title>SaferChatAI — AI Moderation for Discord Communities</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="icon" href="https://i.imgur.com/Ms2yIPz.png" type="image/png">
+<link rel="icon" href="https://i.imgur.com/Ms2yIPz.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="https://i.imgur.com/Ms2yIPz.png">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
 <style>
@@ -92,7 +92,7 @@ nav.scrolled{background:rgba(13,26,48,.92);backdrop-filter:blur(12px);border-bot
 .vigil-intercepted{
   position:absolute;
   bottom:16px;
-  left:-16px;
+  right:-16px;
   background:linear-gradient(135deg,rgba(36,54,96,.95),rgba(27,42,74,.98));
   border:1px solid rgba(255,255,255,.18);
   border-radius:10px;
@@ -206,13 +206,14 @@ nav.scrolled{background:rgba(13,26,48,.92);backdrop-filter:blur(12px);border-bot
 .dc-input-box{background:#383A40;border-radius:7px;padding:7px 11px;font-size:12px;color:rgba(255,255,255,.28);display:flex;align-items:center;gap:7px}
 .dc-plus{width:18px;height:18px;background:rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;color:rgba(255,255,255,.4)}
 
-/* PROOF BAR */
-.proof-bar{background:var(--p800);border-top:1px solid var(--border-dark);border-bottom:1px solid var(--border-dark);padding:20px 0}
-.proof-inner{display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap}
-.proof-item{display:flex;align-items:center;gap:12px}
-.proof-num{font-family:var(--fd);font-size:26px;color:white}
-.proof-label{font-size:12px;color:rgba(255,255,255,.4);line-height:1.4}
-.proof-sep{width:1px;height:32px;background:rgba(255,255,255,.08)}
+/* TRUST STRIP */
+.proof-bar{background:var(--p800);border-top:1px solid var(--border-dark);border-bottom:1px solid var(--border-dark);padding:18px 0}
+.proof-inner{display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap}
+.proof-item{display:flex;align-items:center;gap:10px}
+.proof-num{font-size:14px;font-weight:600;color:rgba(255,255,255,.75);white-space:nowrap;letter-spacing:.01em}
+.proof-label{font-size:13px;color:rgba(255,255,255,.4)}
+.proof-sep{width:1px;height:20px;background:rgba(255,255,255,.1)}
+.trust-emoji{font-size:16px;line-height:1}
 
 /* SECTIONS */
 .section-dark{background:var(--p800);padding:96px 0}
@@ -335,13 +336,8 @@ footer{background:var(--p900);border-top:1px solid var(--border-dark);padding:48
   .btn-ghost-howit{display:none!important}
   .container,.container-sm{padding:0 20px!important}
   .btn-mob-demo{display:flex!important}
-  .proof-inner{flex-wrap:wrap!important;gap:20px!important}
-  .proof-item{min-width:calc(50% - 12px)}
-  .proof-hide-mobile{display:none!important}
-  .proof-inner{justify-content:space-around!important;gap:8px!important}
-  .proof-item{min-width:0!important;flex:1}
-  .proof-num{font-size:22px!important}
-  .proof-label{font-size:10px!important}
+  .proof-inner{gap:16px!important;flex-wrap:wrap!important;justify-content:center!important}
+  .proof-sep{display:none!important}
   .footer-main{grid-template-columns:1fr!important;text-align:center}
   .footer-brand{align-items:center!important}
   .footer-links{align-items:center!important}
@@ -572,7 +568,7 @@ footer{background:var(--p900);border-top:1px solid var(--border-dark);padding:48
           <span class="btn-mob-demo-live"></span>
           Try the Interactive Demo — Live
         </button>
-        <p class="hero-note">No credit card &nbsp;·&nbsp; 2-minute setup &nbsp;·&nbsp; Free during beta</p>
+        <p class="hero-note">No credit card &nbsp;·&nbsp; 2-minute setup &nbsp;·&nbsp; Free</p>
       </div>
 
       <!-- Discord Demo -->
@@ -736,18 +732,17 @@ footer{background:var(--p900);border-top:1px solid var(--border-dark);padding:48
   </div>
 </section>
 
-<!-- PROOF BAR -->
+<!-- TRUST STRIP -->
 <div class="proof-bar">
   <div class="container">
     <div class="proof-inner">
-      <div class="proof-item proof-hide-mobile"><span class="proof-num" data-count="32">0</span><span class="proof-label">servers<br>protected</span></div>
-      <div class="proof-sep proof-hide-mobile"></div>
-      <div class="proof-item"><span class="proof-num" data-count="15000" data-suffix="K">0</span><span class="proof-label">messages<br>analysed</span></div>
+      <div class="proof-item"><span class="trust-emoji">🛡️</span><span class="proof-num">Never auto-bans</span></div>
       <div class="proof-sep"></div>
-      <div class="proof-item"><span class="proof-num">94.2%</span><span class="proof-label">moderation<br>accuracy</span></div>
+      <div class="proof-item"><span class="trust-emoji">⚙️</span><span class="proof-num">2-minute setup</span></div>
       <div class="proof-sep"></div>
-      <div class="proof-item"><span class="proof-num">2 min</span><span class="proof-label">average<br>setup time</span></div>
+      <div class="proof-item"><span class="trust-emoji">🔒</span><span class="proof-num">You control every action</span></div>
     </div>
+    <p style="text-align:center;margin-top:12px;font-size:11px;color:rgba(255,255,255,.25);letter-spacing:.04em;text-transform:uppercase">Used by gaming, anime &amp; community servers</p>
   </div>
 </div>
 
@@ -1182,14 +1177,7 @@ function modAction(btn,type){
 const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
 
-/* COUNTERS */
-function animCounter(el){
-  const tgt=parseInt(el.dataset.count),sfx=el.dataset.suffix||'',dur=1800,t0=performance.now();
-  const u=now=>{const p=Math.min((now-t0)/dur,1),e=1-Math.pow(1-p,3),c=Math.floor(e*tgt);
-    el.textContent=sfx==='K'?(c>=1000?(c/1000).toFixed(0)+'K':c):c.toLocaleString();
-    if(p<1)requestAnimationFrame(u);};requestAnimationFrame(u);}
-const co=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&e.target.dataset.count){animCounter(e.target);co.unobserve(e.target);}}),{threshold:.5});
-document.querySelectorAll('[data-count]').forEach(el=>co.observe(el));
+
 
 /* FAQ */
 function toggleFaq(btn){const it=btn.closest('.faq-item'),o=it.classList.contains('open');
