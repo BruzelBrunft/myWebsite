@@ -348,7 +348,8 @@ footer{background:var(--p900);border-top:1px solid var(--border-dark);padding:48
   .steps-grid{grid-template-columns:1fr!important}
   .works-callout{grid-template-columns:1fr!important}
   .features-grid{grid-template-columns:1fr!important}
-  nav .nav-links{display:none!important}
+  nav .nav-links{display:none}
+  nav .nav-links.open{display:flex}
   .nav-ham{display:flex!important}
 }
 /* Hide mobile demo button on desktop */
@@ -1252,6 +1253,12 @@ function mobModAction(btn,type){
   },{passive:true});
 })();
 
+</script>
+<script>
+function toggleNav() {
+  const nav = document.getElementById("nav-links");
+  nav.classList.toggle("open");
+}
 </script>
 </body>
 </html>
