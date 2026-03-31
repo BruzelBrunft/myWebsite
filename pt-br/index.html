@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Bot de Moderação com IA para Discord — SaferChatAI | Beta Gratuito</title>
+<meta name="description" content="SaferChatAI detecta assédio, discurso de ódio e links fraudulentos que o AutoMod deixa passar — IA contextual, sem banimentos automáticos. Beta gratuito, configuração em 2 minutos.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<link rel="canonical" href="https://saferchatai.com/pt/">
+<link rel="alternate" hreflang="en"    href="https://saferchatai.com/">
+<link rel="alternate" hreflang="de"    href="https://saferchatai.com/de/">
+<link rel="alternate" hreflang="es"    href="https://saferchatai.com/es/">
+<link rel="alternate" hreflang="fr"    href="https://saferchatai.com/fr/">
+<link rel="alternate" hreflang="pt-BR" href="https://saferchatai.com/pt-br/">
+<link rel="alternate" hreflang="x-default" href="https://saferchatai.com/">
+<meta property="og:type"        content="website">
+<meta property="og:site_name"   content="SaferChatAI">
+<meta property="og:url"         content="https://saferchatai.com/">
+<meta property="og:title"       content="Bot de Moderação com IA para Discord — SaferChatAI | Beta Gratuito">
+<meta property="og:description" content="Catches harassment, hate speech &amp; scam links AutoMod misses. Context-aware AI, no auto-bans, always human control. Free beta.">
+<meta property="og:image"       content="https://raw.githubusercontent.com/BruzelBrunft/myWebsite/refs/heads/main/ogbannerWebsite.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt"   content="SaferChatAI — AI-powered Discord moderation">
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:title"       content="AI Discord Moderation Bot — SaferChatAI">
+<meta name="twitter:description" content="Catches harassment, hate speech &amp; scam links AutoMod misses. Free beta.">
+<meta name="twitter:image"       content="https://raw.githubusercontent.com/BruzelBrunft/myWebsite/refs/heads/main/ogbannerWebsite.png">
+<meta name="theme-color" content="#0D1A30">
+<link rel="icon" href="https://raw.githubusercontent.com/BruzelBrunft/myWebsite/refs/heads/main/SaferChat%20AI%20Transparent.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="https://raw.githubusercontent.com/BruzelBrunft/myWebsite/refs/heads/main/SaferChat%20AI%20Transparent.png">
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1A2035;--ink-soft:#2D3A52;--ink-muted:#5A6880;
+  --p900:#0D1A30;--p800:#152240;--p700:#1B2A4A;--p600:#243660;
+  --p500:#4A6FA5;--p400:#6A8FBF;--p300:#8AAED4;--p200:#B8CDE8;
+  --p100:#D4E3F2;--p50:#EEF4FB;
+  --rose:#D4606E;--rose-hero:#E07088;--rose-soft:#E8B8C0;--rose-pale:#F8E8EA;
+  --sage:#7DAF95;--sage-deep:#5A8A72;--sage-pale:#EFF7F3;
+  --amber:#C8956A;
+  --border-dark:rgba(255,255,255,.08);--border-light:#E0DCD5;
+  --surface:#F7F5F2;--white:#FFFFFF;
+  --fd:'DM Serif Display',Georgia,serif;--fb:'DM Sans',system-ui,sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--p800);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.display{font-family:var(--fd);font-size:clamp(40px,5.5vw,72px);line-height:1.07;letter-spacing:-.02em}
+.display-md{font-family:var(--fd);font-size:clamp(30px,4vw,50px);line-height:1.1;letter-spacing:-.015em}
+.label{font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase}
+.container{max-width:1160px;margin:0 auto;padding:0 40px}
+.container-sm{max-width:760px;margin:0 auto;padding:0 40px}
+@media(max-width:768px){.container,.container-sm{padding:0 20px}}
+
+/* ── SCROLL PROGRESS + BACK TO TOP ── */
+#scroll-progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--rose);z-index:300;pointer-events:none;will-change:width}
+#back-top{position:fixed;bottom:28px;right:24px;width:40px;height:40px;border-radius:50%;background:rgba(13,26,48,.88);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(10px);transition:opacity .25s,transform .25s;z-index:90;color:rgba(255,255,255,.55);padding:0}
+#back-top.show{opacity:1;transform:translateY(0)}
+#back-top:hover{background:rgba(74,111,165,.55);color:white;border-color:rgba(255,255,255,.25)}
+
+/* ── BUTTON PRESS STATES ── */
+.btn-primary:active{transform:scale(.97)!important}
+.btn-ghost:active{transform:scale(.97)!important}
+
+/* ── REDUCED MOTION ── */
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}.reveal{opacity:1!important;transform:none!important}}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .3s,backdrop-filter .3s,border-color .3s}
+nav.scrolled{background:rgba(13,26,48,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-dark)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.nav-logomark{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
+.nav-wordmark{font-family:var(--fd);font-size:20px;color:white;letter-spacing:-.01em}
+
+/* Right group: links → cta → lang */
+.nav-right{display:flex;align-items:center;gap:0}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none;margin-right:28px}
+.nav-links a{font-size:14px;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s;white-space:nowrap;position:relative;padding-bottom:2px}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--rose);transition:width .2s ease}
+.nav-links a:hover{color:white}
+.nav-links a:hover::after,.nav-links a.spy-active::after{width:100%}
+.nav-links a.spy-active{color:white}
+
+/* Language switcher — after CTA, separated by a subtle divider */
+.lang-switch{position:relative;margin-left:12px;padding-left:12px;border-left:1px solid rgba(255,255,255,.1)}
+.lang-btn{display:flex;align-items:center;gap:4px;background:none;border:none;color:rgba(255,255,255,.45);font-size:12px;font-weight:600;letter-spacing:.04em;cursor:pointer;padding:4px 2px;font-family:var(--fb);transition:color .2s;white-space:nowrap}
+.lang-btn:hover{color:rgba(255,255,255,.8)}
+.lang-btn svg{opacity:.5;transition:transform .2s,opacity .2s}
+.lang-switch.open .lang-btn svg{transform:rotate(180deg);opacity:.8}
+.lang-dropdown{position:absolute;top:calc(100% + 10px);right:0;background:rgba(10,22,42,.97);border:1px solid rgba(255,255,255,.1);border-radius:10px;backdrop-filter:blur(20px);padding:5px;min-width:148px;opacity:0;transform:translateY(-4px) scale(.98);pointer-events:none;transition:opacity .16s ease,transform .16s ease;z-index:200;box-shadow:0 8px 32px rgba(0,0,0,.4)}
+.lang-switch.open .lang-dropdown{opacity:1;transform:none;pointer-events:auto}
+.lang-opt{display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:6px;font-size:13px;color:rgba(255,255,255,.55);text-decoration:none;transition:background .12s,color .12s;cursor:pointer}
+.lang-opt:hover{background:rgba(255,255,255,.07);color:white}
+.lang-opt.active{color:white;font-weight:600}
+.lang-opt-flag{font-size:15px;line-height:1;flex-shrink:0}
+.lang-opt-dot{width:5px;height:5px;border-radius:50%;background:var(--rose);margin-left:auto;flex-shrink:0;display:none}
+.lang-opt.active .lang-opt-dot{display:block}
+
+/* CTA button */
+.btn-nav{display:inline-flex!important;align-items:center;gap:8px;background:white;color:var(--p800)!important;font-size:13px!important;font-weight:600!important;padding:8px 18px;border-radius:8px;transition:background .2s,transform .2s,box-shadow .2s;white-space:nowrap;flex-shrink:0;line-height:1}
+.btn-nav:hover{background:var(--p100)!important;transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,0,0,.25)}
+.btn-nav:active{transform:scale(.97)!important}
+
+/* Hamburger */
+.nav-ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;border-radius:6px;transition:background .15s;-webkit-tap-highlight-color:transparent;flex-shrink:0}
+.nav-ham:hover{background:rgba(255,255,255,.07)}
+.nav-ham span{display:block;width:22px;height:2px;background:rgba(255,255,255,.7);border-radius:2px;transition:transform .28s ease,opacity .2s ease}
+.nav-ham.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-ham.active span:nth-child(2){opacity:0;transform:scaleX(0)}
+.nav-ham.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* Mobile menu — hidden on desktop */
+.nav-links-mob{display:none}
+
+@media(max-width:768px){
+  .nav-ham{display:flex}
+  .lang-switch{display:none}
+  .nav-right{display:none}
+  .nav-links-mob{
+    position:absolute;top:64px;left:0;right:0;
+    background:rgba(10,20,38,.98);backdrop-filter:blur(16px);
+    border-bottom:1px solid rgba(255,255,255,.07);
+    flex-direction:column;align-items:stretch;gap:0;
+    max-height:0;overflow:hidden;
+    transition:max-height .32s cubic-bezier(.4,0,.2,1);
+    display:flex;pointer-events:none;list-style:none;padding:0;margin:0;
+  }
+  .nav-links-mob.open{max-height:380px;pointer-events:auto}
+  .nav-links-mob li{border-bottom:1px solid rgba(255,255,255,.05)}
+  .nav-links-mob li:last-child{border-bottom:none}
+  .nav-links-mob a{display:block;padding:15px 24px;font-size:15px;color:rgba(255,255,255,.7);text-decoration:none;transition:color .15s}
+  .nav-links-mob a:hover{color:white}
+  /* Mobile language strip — subtle, bottom of menu */
+  .mob-lang-strip{display:flex;align-items:center;gap:0;padding:10px 24px 12px;flex-wrap:nowrap}
+  .mob-lang-sep{color:rgba(255,255,255,.15);font-size:11px;margin:0 6px}
+  .mob-lang{font-size:11px;font-weight:600;letter-spacing:.06em;color:rgba(255,255,255,.3);text-decoration:none;transition:color .15s;padding:2px 0}
+  .mob-lang:hover{color:rgba(255,255,255,.65)}
+  .mob-lang.active{color:var(--rose)}
+}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;background:var(--p900);overflow:hidden;padding-top:64px}
+.hero::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:.025;pointer-events:none;z-index:0}
+.hero-orb{position:absolute;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(74,111,165,.18) 0%,transparent 70%);top:-200px;right:-200px;pointer-events:none}
+.hero-orb-2{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(224,112,136,.1) 0%,transparent 70%);bottom:100px;left:100px;pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+.hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:center;padding:80px 0 100px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:6px 14px 6px 8px;margin-bottom:28px}
+.hero-badge-dot{width:6px;height:6px;background:var(--sage);border-radius:50%;box-shadow:0 0 8px var(--sage);animation:pdot 2s ease infinite}
+@keyframes pdot{0%,100%{opacity:1;box-shadow:0 0 8px var(--sage)}50%{opacity:.6;box-shadow:0 0 4px var(--sage)}}
+.hero-badge-text{font-size:12px;color:rgba(255,255,255,.6);font-weight:500}
+.hero h1{color:white;margin-bottom:24px}
+.hero h1 em{font-style:italic;color:var(--rose-hero);padding:0 12px;border-radius:6px}
+.hero-sub{font-size:17px;color:rgba(255,255,255,.55);line-height:1.65;font-weight:300;max-width:440px;margin-bottom:40px}
+.hero-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;background:white;color:var(--p800);font-family:var(--fb);font-size:15px;font-weight:600;padding:14px 28px;border-radius:10px;text-decoration:none;border:none;cursor:pointer;transition:all .2s;box-shadow:0 4px 24px rgba(0,0,0,.3)}
+.btn-primary:hover{background:var(--p50);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.4)}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;background:transparent;color:rgba(255,255,255,.6);font-family:var(--fb);font-size:14px;font-weight:500;padding:14px 20px;border-radius:10px;text-decoration:none;border:1px solid rgba(255,255,255,.12);cursor:pointer;transition:all .2s}
+.btn-ghost:hover{border-color:rgba(255,255,255,.25);color:white}
+.hero-note{margin-top:16px;font-size:12px;color:rgba(255,255,255,.3)}
+@media(max-width:960px){.hero-inner{grid-template-columns:1fr;gap:40px}}
+@media(max-width:900px){.hero-visual{display:none}}
+
+/* DEMO BADGE */
+.demo-label{margin-bottom:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.demo-pill{display:inline-flex;align-items:center;gap:7px;background:rgba(87,242,135,.09);border:1px solid rgba(87,242,135,.24);border-radius:20px;padding:5px 13px 5px 8px;font-size:12px;color:rgba(255,255,255,.65);font-weight:600;font-family:var(--fb)}
+.demo-pill-dot{width:7px;height:7px;background:#57F287;border-radius:50%;box-shadow:0 0 7px #57F287;animation:pdot 2s ease infinite;flex-shrink:0}
+.demo-hint{font-size:12px;color:rgba(255,255,255,.42);letter-spacing:-.01em;display:flex;align-items:center;gap:5px;font-weight:400}
+.demo-hint-arrow{display:inline-block;animation:nudge 1.4s ease-in-out infinite}
+@keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(4px)}}
+
+/* FLOATING INTERCEPTED BADGE - REPOSITIONED */
+.hero-visual{position:relative}
+.vigil-intercepted{
+  position:absolute;
+  bottom:16px;
+  right:-16px;
+  background:linear-gradient(135deg,rgba(36,54,96,.95),rgba(27,42,74,.98));
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:10px;
+  padding:10px 16px;
+  display:flex;align-items:center;gap:9px;
+  box-shadow:0 8px 24px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.06);
+  z-index:10;
+  pointer-events:none;
+  animation:popupBounce 3s ease-in-out infinite;
+}
+@keyframes popupBounce{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-4px)}
+}
+.vi-icon{font-size:15px}
+.vi-label{font-size:10px;color:rgba(255,255,255,.38);line-height:1.3}
+.vi-val{font-size:12px;font-weight:700;color:white;line-height:1.3}
+
+/* CHANNEL HOVER — make interactivity obvious */
+.dc-ch{cursor:pointer;user-select:none}
+.dc-ch:hover{background:rgba(255,255,255,.1)!important;color:white!important}
+/* Unread channel shimmer */
+@keyframes unread-glow{0%,100%{background:rgba(237,66,69,.0)}50%{background:rgba(237,66,69,.08)}}
+.dc-ch.unread{animation:unread-glow 2.4s ease infinite}
+
+/* DISCORD WINDOW */
+.discord-window{display:flex;background:#313338;border-radius:12px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.04);height:490px;font-family:'DM Sans',system-ui,sans-serif}
+
+/* server strip */
+.dc-servers{width:44px;background:#1E1F22;display:flex;flex-direction:column;align-items:center;padding:10px 0;gap:7px;flex-shrink:0}
+.dc-sv{position:relative;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:white;cursor:pointer;transition:border-radius .2s;font-family:var(--fb)}
+.dc-sv:hover,.dc-sv.active{border-radius:10px}
+.dc-sv-pill{width:4px;height:0;background:white;border-radius:0 4px 4px 0;position:absolute;left:0;transition:height .2s;top:50%;transform:translateY(-50%)}
+.dc-sv.active .dc-sv-pill{height:28px}
+
+/* sidebar */
+.dc-sidebar{width:136px;background:#2B2D31;display:flex;flex-direction:column;flex-shrink:0;overflow:hidden}
+.dc-srv-head{padding:10px 10px 8px;border-bottom:1px solid rgba(0,0,0,.25);display:flex;align-items:center;justify-content:space-between;cursor:pointer}
+.dc-srv-name{font-size:12px;font-weight:700;color:white;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dc-cat{font-size:9px;font-weight:700;color:rgba(255,255,255,.28);letter-spacing:.07em;text-transform:uppercase;padding:10px 8px 3px 10px}
+.dc-ch{display:flex;align-items:center;gap:4px;padding:3px 6px 3px 8px;border-radius:4px;margin:0 3px;font-size:12px;color:rgba(255,255,255,.35);transition:background .15s,color .15s;position:relative;min-width:0}
+.dc-ch:hover{background:rgba(255,255,255,.07);color:rgba(255,255,255,.6)}
+.dc-ch.active{background:rgba(255,255,255,.1);color:#DCDDDE}
+.dc-ch.unread{color:#F2F3F5;font-weight:600}
+.hash{opacity:.5;font-size:14px;flex-shrink:0;line-height:1}
+.dc-ch.unread .hash{opacity:.6}
+.dc-ch-lbl{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+.ch-badge{background:#ED4245;color:white;font-size:9px;font-weight:800;padding:0 4px;border-radius:8px;min-width:15px;height:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0;animation:bpulse 2s ease infinite}
+@keyframes bpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+.dc-userbar{margin-top:auto;background:#232428;padding:7px;display:flex;align-items:center;gap:6px}
+.dc-uav{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:white;flex-shrink:0;position:relative}
+.dc-uav::after{content:'';position:absolute;bottom:-1px;right:-1px;width:8px;height:8px;background:#23A55A;border:2px solid #232428;border-radius:50%}
+.dc-uname{font-size:11px;font-weight:600;color:#F2F3F5}
+.dc-udisc{font-size:10px;color:rgba(255,255,255,.3)}
+
+/* main */
+.dc-main{flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden}
+.dc-titlebar{background:#313338;padding:9px 12px;display:flex;align-items:center;gap:9px;border-bottom:1px solid rgba(0,0,0,.25);flex-shrink:0}
+.dc-titlebar-ch{font-size:13px;font-weight:700;color:#F2F3F5;display:flex;align-items:center;gap:4px}
+.dc-titlebar-ch .hash{color:rgba(255,255,255,.35);font-size:15px}
+.dc-sep{width:1px;height:14px;background:rgba(255,255,255,.1)}
+.dc-topic{font-size:11px;color:rgba(255,255,255,.3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dc-body{padding:10px 10px 4px;display:flex;flex-direction:column;gap:2px;overflow-y:auto;flex:1}
+.dc-body::-webkit-scrollbar{width:4px}
+.dc-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:2px}
+
+/* messages */
+.dc-msg{display:flex;gap:9px;padding:3px 6px;border-radius:4px;transition:background .15s}
+.dc-msg:hover{background:rgba(0,0,0,.08)}
+.dc-av{width:30px;height:30px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:white;font-family:var(--fb);margin-top:2px}
+.dc-mc{flex:1;min-width:0}
+.dc-un{font-size:12px;font-weight:600;color:#F2F3F5;margin-bottom:1px;line-height:1.3}
+.dc-txt{font-size:13px;color:#DCDDDE;line-height:1.45;word-break:break-word}
+.dc-txt.del{color:#72767D;font-style:italic;font-size:12px}
+.bot-tag{font-size:9px;font-weight:700;background:#243660;color:rgba(255,255,255,.8);padding:1px 5px;border-radius:3px;letter-spacing:.04em;vertical-align:middle;margin:0 3px}
+
+/* embeds */
+.dc-embed{margin:5px 0 3px 39px;background:#2B2D31;border-radius:0 5px 5px 0;padding:10px 13px}
+.dc-embed.red{border-left:3px solid #C84040}
+.dc-embed.grn{border-left:3px solid #7DAF95}
+.emb-title{font-size:14px;font-weight:700;color:white;margin-bottom:6px;line-height:1.3}
+.emb-body{font-size:12px;color:#B5BAC1;line-height:1.6}
+.emb-checks{display:flex;flex-direction:column;gap:4px;font-size:12px;color:rgba(255,255,255,.55);margin-top:8px}
+
+/* mod embed specifics */
+.mod-fields{display:flex;gap:14px;margin:8px 0;flex-wrap:wrap}
+.mf-name{font-size:11px;font-weight:600;color:rgba(255,255,255,.88);margin-bottom:2px}
+.mf-val{font-size:12px;color:#B5BAC1}
+.mod-preview{font-size:12px;color:rgba(255,255,255,.4);font-style:italic;padding:6px 9px;background:rgba(0,0,0,.15);border-radius:4px;margin:5px 0;border-left:2px solid rgba(255,255,255,.1)}
+.mod-reason{font-size:12px;color:#B5BAC1;line-height:1.5;margin:5px 0;padding:7px 9px;background:rgba(0,0,0,.12);border-radius:4px}
+
+/* mentions */
+.ch-link{background:rgba(88,101,242,.3);color:#8BA4E7;border-radius:3px;padding:0 4px;cursor:pointer;font-weight:500;font-size:12px;transition:background .15s;text-decoration:none;white-space:nowrap;display:inline}
+.ch-link:hover{background:rgba(88,101,242,.65);color:white}
+.u-link{background:rgba(88,101,242,.2);color:#8BA4E7;border-radius:3px;padding:0 4px;font-weight:500;font-size:12px}
+
+/* buttons */
+.vbtns{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap}
+.vbtn{font-size:11px;font-weight:500;padding:5px 10px;border-radius:3px;border:none;cursor:pointer;font-family:var(--fb);transition:filter .15s,opacity .2s}
+.vbtn:not(:disabled):hover{filter:brightness(1.15)}
+.vbtn:disabled{cursor:default}
+.vbtn.d{background:#da373c;color:white}
+.vbtn.p{background:#5865f2;color:white}
+.vbtn.w{background:#c8956a;color:white}
+.vbtn.n{background:#4e5058;color:white}
+.vbtn.b{background:#8B2222;color:white}
+.action-note{margin-top:7px;padding:6px 9px;background:rgba(255,255,255,.06);border-radius:4px;font-size:11px;color:rgba(255,255,255,.45);line-height:1.5}
+
+/* input bar */
+.dc-inputbar{padding:6px 10px 10px;flex-shrink:0}
+.dc-input-box{background:#383A40;border-radius:7px;padding:7px 11px;font-size:12px;color:rgba(255,255,255,.28);display:flex;align-items:center;gap:7px}
+.dc-plus{width:18px;height:18px;background:rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;color:rgba(255,255,255,.4)}
+
+/* TRUST STRIP */
+.proof-bar{background:var(--p800);border-top:1px solid var(--border-dark);border-bottom:1px solid var(--border-dark);padding:18px 0}
+.proof-inner{display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap}
+.proof-item{display:flex;align-items:center;gap:10px}
+.proof-num{font-size:14px;font-weight:600;color:rgba(255,255,255,.75);white-space:nowrap;letter-spacing:.01em}
+.proof-label{font-size:13px;color:rgba(255,255,255,.4)}
+.proof-sep{width:1px;height:20px;background:rgba(255,255,255,.1)}
+.trust-emoji{font-size:16px;line-height:1}
+
+/* SECTIONS */
+.section-dark{background:var(--p800);padding:96px 0}
+.section-light{background:var(--surface);padding:96px 0}
+.section-white{background:var(--white);padding:96px 0}
+.section-header{text-align:center;margin-bottom:64px}
+.section-header .label{color:var(--rose);margin-bottom:12px;display:block}
+.section-header p{font-size:18px;color:var(--ink-muted);max-width:560px;margin:16px auto 0;line-height:1.7}
+
+/* COMPARISON */
+.comp-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:start}
+.vs-div{display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:56px}
+.vs-circle{width:40px;height:40px;border-radius:50%;background:var(--p700);border:1px solid var(--border-dark);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:.05em}
+.comp-card{background:rgba(255,255,255,.03);border:1px solid var(--border-dark);border-radius:16px;overflow:hidden}
+.comp-card.fail{border-color:rgba(200,64,64,.2)}
+.comp-card.win{border-color:rgba(125,175,149,.3)}
+.comp-head{padding:18px 22px;border-bottom:1px solid var(--border-dark);display:flex;align-items:center;gap:12px}
+.comp-icon{font-size:20px;flex-shrink:0}
+.comp-name{font-size:16px;font-weight:700;color:rgba(255,255,255,.9);line-height:1.3}
+.comp-sub{font-size:12px;color:rgba(255,255,255,.35);margin-top:3px}
+.comp-body{padding:20px}
+.comp-scenario{background:rgba(0,0,0,.2);border-radius:8px;padding:11px 13px;margin-bottom:13px;font-size:13px;color:rgba(255,255,255,.6);line-height:1.5;font-style:italic;border-left:2px solid rgba(255,255,255,.1)}
+.comp-res{display:flex;align-items:flex-start;gap:10px;padding:9px 13px;border-radius:8px;margin-bottom:10px;font-size:13px;line-height:1.5}
+.comp-res.bad{background:rgba(200,64,64,.08);color:rgba(255,255,255,.5)}
+.comp-res.good{background:rgba(125,175,149,.1);color:rgba(255,255,255,.75)}
+.comp-ri{font-size:14px;flex-shrink:0;margin-top:1px}
+@media(max-width:768px){.comp-grid{grid-template-columns:1fr}.vs-div{flex-direction:row;padding:0}}
+
+/* HOW IT WORKS */
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:16px}
+.step{text-align:center;padding:8px}
+.step-num{width:48px;height:48px;border-radius:12px;background:var(--p50);border:1px solid var(--p100);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:22px;color:var(--p500);margin:0 auto 20px}
+.step h3{font-size:16px;font-weight:600;color:var(--ink-soft);margin-bottom:8px}
+.step p{font-size:14px;color:var(--ink-muted);line-height:1.7}
+.add-link{display:inline-flex;align-items:center;gap:6px;color:var(--p500);font-weight:600;font-size:14px;text-decoration:none;margin-top:10px;transition:color .2s}
+.add-link:hover{color:var(--p400);text-decoration:underline}
+.works-callout{margin-top:64px;background:white;border:1px solid var(--border-light);border-radius:16px;padding:32px;max-width:760px;margin-left:auto;margin-right:auto;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
+.callout-checks{display:flex;flex-direction:column;gap:10px}
+.cc-row{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--ink-muted);line-height:1.5}
+.cc-icon{width:20px;height:20px;background:var(--sage-pale);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;margin-top:1px;color:var(--sage-deep);font-weight:700}
+@media(max-width:768px){.steps-grid{grid-template-columns:1fr}.works-callout{grid-template-columns:1fr}}
+
+/* FEATURES */
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.feat-card{background:var(--white);border:1px solid var(--border-light);border-radius:16px;padding:28px;transition:all .2s}
+.feat-card:hover{border-color:var(--p300);box-shadow:0 4px 24px rgba(74,111,165,.08);transform:translateY(-2px)}
+.feat-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px;background:var(--p50)}
+.feat-card h3{font-size:15px;font-weight:600;color:var(--ink-soft);margin-bottom:8px}
+.feat-card p{font-size:13px;color:var(--ink-muted);line-height:1.7}
+.feat-card.accent{border-color:var(--rose-soft);background:var(--rose-pale)}
+.feat-card.accent .feat-icon{background:rgba(212,144,154,.15)}
+@media(max-width:900px){.features-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.features-grid{grid-template-columns:1fr}}
+
+/* FAQ */
+.faq-list{display:grid;gap:12px;max-width:720px;margin:0 auto}
+.faq-item{background:var(--white);border:1px solid var(--border-light);border-radius:12px;overflow:hidden}
+.faq-q{width:100%;padding:18px 20px;background:none;border:none;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:var(--fb);font-size:15px;font-weight:600;color:var(--ink-soft);transition:color .2s}
+.faq-q:hover{color:var(--p500)}
+.faq-chev{font-size:12px;color:var(--ink-muted);transition:transform .25s;flex-shrink:0}
+.faq-item.open .faq-chev{transform:rotate(180deg)}
+.faq-a{padding:0 20px;max-height:0;overflow:hidden;transition:max-height .35s ease,padding .3s ease}
+.faq-item.open .faq-a{padding:0 20px 18px;max-height:400px}
+.faq-a p{font-size:14px;color:var(--ink-muted);line-height:1.7}
+.faq-a code{background:var(--p50);padding:1px 6px;border-radius:4px;font-size:13px;color:var(--p500)}
+
+/* CTA */
+.cta-section{background:var(--p900);padding:120px 0;position:relative;overflow:hidden;text-align:center}
+.cta-section::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(74,111,165,.15) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.cta-section .label{color:var(--rose);margin-bottom:16px;display:block}
+.cta-section h2{color:white;max-width:580px;margin:0 auto 20px}
+.cta-sub{color:rgba(255,255,255,.45);font-size:17px;max-width:480px;margin:0 auto 40px;line-height:1.7}
+.cta-actions{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
+.cta-note{margin-top:20px;font-size:13px;color:rgba(255,255,255,.25)}
+
+/* FOOTER */
+footer{background:var(--p900);border-top:1px solid var(--border-dark);padding:48px 0 0}
+.footer-main{display:grid;grid-template-columns:1fr auto 1fr;gap:32px;align-items:start;padding-bottom:32px}
+.footer-brand{display:flex;flex-direction:column;gap:12px}
+.footer-logo{font-family:var(--fd);font-size:24px;color:white;text-decoration:none;display:flex;align-items:center;gap:10px}
+.footer-logomark{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
+.footer-links{display:flex;flex-direction:column;gap:8px;list-style:none}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s;display:inline-flex;align-items:center;gap:6px}
+.footer-links a:hover{color:rgba(255,255,255,.7)}
+.footer-center{display:flex;flex-direction:column;align-items:center;gap:12px}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.35);text-align:center}
+.footer-legal{border-top:1px solid rgba(255,255,255,.05);padding:20px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.legal-links{display:flex;gap:20px;list-style:none;flex-wrap:wrap}
+.legal-links a{font-size:11px;color:rgba(255,255,255,.25);text-decoration:none;transition:color .2s}
+.legal-links a:hover{color:rgba(255,255,255,.5)}
+.footer-location{font-size:11px;color:rgba(255,255,255,.18)}
+@media(max-width:768px){
+  .footer-main{grid-template-columns:1fr;text-align:center}
+  .footer-brand{align-items:center}
+  .footer-links{align-items:center}
+  .footer-legal{flex-direction:column;text-align:center}
+}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}.reveal-delay-2{transition-delay:.2s}.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.4s}.reveal-delay-5{transition-delay:.5s}
+.label-light{color:var(--rose)}.label-dark{color:var(--p400)}.label-muted{color:var(--ink-muted)}
+
+/* ═══════════════════════════════════════════════════
+   MOBILE-ONLY: fullscreen demo overlay + responsive
+════════════════════════════════════════════════════ */
+
+/* Hide desktop demo on mobile, show mobile demo button */
+@media(max-width:767px){
+  .hero-visual{display:none!important}
+  .hero-inner{grid-template-columns:1fr!important}
+  .hero-badge{margin-bottom:20px}
+  .hero h1{font-size:clamp(34px,9vw,52px)!important}
+  .hero-sub{font-size:15px!important;max-width:100%!important}
+  .hero-actions{flex-direction:column!important;align-items:stretch!important}
+  .hero-actions .btn-primary,.hero-actions .btn-ghost{width:100%!important;justify-content:center!important}
+  .hero-inner{padding:60px 0 80px!important}
+  .btn-ghost-howit{display:none!important}
+  .container,.container-sm{padding:0 20px!important}
+  .btn-mob-demo{display:flex!important}
+  .proof-inner{gap:16px!important;flex-wrap:wrap!important;justify-content:center!important}
+  .proof-sep{display:none!important}
+  .footer-main{grid-template-columns:1fr!important;text-align:center}
+  .footer-brand{align-items:center!important}
+  .footer-links{align-items:center!important}
+  .footer-legal{flex-direction:column!important;text-align:center}
+  footer{padding-bottom:calc(80px + env(safe-area-inset-bottom))!important}
+  .comp-grid{grid-template-columns:1fr!important}
+  .vs-div{flex-direction:row!important;padding:0!important}
+  .steps-grid{grid-template-columns:1fr!important}
+  .works-callout{grid-template-columns:1fr!important}
+  .features-grid{grid-template-columns:1fr!important}
+  nav .nav-links{display:none}
+  nav .nav-links.open{display:flex}
+  .nav-ham{display:flex!important}
+}
+/* Hide mobile demo button on desktop */
+@media(min-width:768px){
+  .btn-mob-demo{display:none!important}
+  #demo-overlay{display:none!important}
+  .nav-ham{display:none!important}
+}
+
+/* Mobile demo button — rose/red from palette */
+.btn-mob-demo{
+  display:none;
+  align-items:center;justify-content:center;gap:10px;
+  background:linear-gradient(135deg,#D4606E,#c04e5c);
+  color:white;font-family:var(--fb);font-size:15px;font-weight:600;
+  padding:14px 24px;border-radius:10px;text-decoration:none;border:none;
+  cursor:pointer;transition:all .2s;
+  box-shadow:0 4px 20px rgba(212,96,110,.35);
+  width:100%;
+}
+.btn-mob-demo:active{transform:translateY(1px);box-shadow:0 2px 12px rgba(212,96,110,.3)}
+/* Gap from the hero-actions div above it */
+@media(max-width:767px){.btn-mob-demo{margin-top:12px!important}}
+.btn-mob-demo-live{width:8px;height:8px;background:#57F287;border-radius:50%;
+  box-shadow:0 0 8px #57F287;animation:pdot 2s ease infinite;flex-shrink:0}
+
+/* Fullscreen demo overlay */
+#demo-overlay{position:fixed;inset:0;z-index:200;display:none;flex-direction:column;
+  background:#313338;font-family:'DM Sans',system-ui,sans-serif}
+#demo-overlay.open{display:flex}
+
+/* Discord mobile header */
+.mob-header{background:#313338;padding:10px 14px;display:flex;align-items:center;gap:10px;
+  border-bottom:1px solid rgba(0,0,0,.3);flex-shrink:0;min-height:56px;
+  padding-top:max(10px,env(safe-area-inset-top))}
+.mob-header-ham{display:flex;flex-direction:column;align-items:center;cursor:pointer;
+  padding:4px 8px;border-radius:8px;gap:3px;min-width:52px}
+.mob-header-ham:active{background:rgba(255,255,255,.08)}
+.mob-ham-label{font-size:9px;color:rgba(255,255,255,.45);font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;line-height:1}
+.mob-ch-info{flex:1;display:flex;align-items:center;gap:6px;min-width:0}
+.mob-hash{font-size:18px;color:rgba(255,255,255,.4);line-height:1;flex-shrink:0}
+.mob-ch-name{font-size:15px;font-weight:700;color:white;white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis}
+
+/* Back button — colorful, can't miss it */
+.demo-back{background:linear-gradient(135deg,#5865F2,#4752c4);border:none;
+  color:white;font-size:13px;font-weight:700;padding:8px 16px;border-radius:20px;
+  cursor:pointer;font-family:var(--fb);display:flex;align-items:center;gap:6px;
+  white-space:nowrap;flex-shrink:0;box-shadow:0 2px 12px rgba(88,101,242,.5);
+  letter-spacing:.01em}
+.demo-back:active{filter:brightness(1.15);transform:scale(.97)}
+
+/* Channel drawer */
+.mob-drawer-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.6);z-index:10;
+  opacity:0;pointer-events:none;transition:opacity .3s}
+.mob-drawer-backdrop.open{opacity:1;pointer-events:all}
+.mob-drawer{position:absolute;top:0;bottom:0;left:0;width:80%;max-width:300px;
+  background:#2B2D31;z-index:11;transform:translateX(-100%);
+  transition:transform .3s ease;display:flex;flex-direction:column;overflow:hidden}
+.mob-drawer.open{transform:translateX(0)}
+.mob-drawer-head{padding:16px 14px 10px;border-bottom:1px solid rgba(0,0,0,.25)}
+.mob-srv-name{font-size:16px;font-weight:700;color:white;margin-bottom:2px}
+.mob-srv-sub{font-size:12px;color:rgba(255,255,255,.35)}
+.mob-drawer-channels{flex:1;overflow-y:auto;padding:8px 0}
+.mob-cat{font-size:10px;font-weight:700;color:rgba(255,255,255,.3);
+  letter-spacing:.08em;text-transform:uppercase;padding:12px 14px 4px}
+.mob-ch{display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:6px;
+  margin:0 6px;font-size:14px;color:rgba(255,255,255,.45);cursor:pointer;
+  transition:all .15s;min-height:42px}
+.mob-ch:active,.mob-ch.mob-active{background:rgba(255,255,255,.1);color:#DCDDDE}
+.mob-ch.mob-unread{color:#F2F3F5;font-weight:600}
+.mob-hash-sm{font-size:16px;opacity:.5;flex-shrink:0;line-height:1}
+.mob-ch-badge{background:#ED4245;color:white;font-size:9px;font-weight:800;
+  padding:0 5px;border-radius:8px;min-width:16px;height:16px;
+  display:flex;align-items:center;justify-content:center;margin-left:auto;flex-shrink:0}
+.mob-ch-hint{background:rgba(88,101,242,.15);border:1px solid rgba(88,101,242,.3);
+  color:#8BA4E7;font-size:11px;font-weight:600;padding:6px 12px;border-radius:10px;
+  display:flex;align-items:center;gap:6px;margin:8px 8px 4px}
+.mob-hint-dot{width:5px;height:5px;background:#5865F2;border-radius:50%;
+  animation:pdot 1.5s ease infinite;flex-shrink:0}
+.mob-drawer-user{background:#232428;padding:10px 12px;display:flex;
+  align-items:center;gap:10px;flex-shrink:0}
+.mob-uav{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:12px;font-weight:700;color:white;flex-shrink:0;position:relative}
+.mob-uav::after{content:'';position:absolute;bottom:0;right:0;width:10px;height:10px;
+  background:#23A55A;border:2px solid #232428;border-radius:50%}
+.mob-uname{font-size:13px;font-weight:600;color:#F2F3F5}
+
+/* Messages area */
+.mob-messages{flex:1;overflow-y:auto;padding:12px 12px 8px;
+  display:flex;flex-direction:column;gap:4px}
+.mob-messages::-webkit-scrollbar{display:none}
+.mob-msg{display:flex;gap:10px;padding:4px 6px;border-radius:6px}
+.mob-msg:active{background:rgba(255,255,255,.04)}
+.mob-av{width:36px;height:36px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:700;color:white;margin-top:2px}
+.mob-mc{flex:1;min-width:0}
+.mob-un{font-size:13px;font-weight:600;color:#F2F3F5;margin-bottom:2px;
+  line-height:1.3;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.mob-ts{font-size:10px;color:#72767D;font-weight:400}
+.mob-txt{font-size:14px;color:#DCDDDE;line-height:1.5;word-break:break-word}
+.mob-txt.del{color:#72767D;font-style:italic;font-size:13px}
+.mob-bot-tag{font-size:9px;font-weight:700;background:#243660;
+  color:rgba(255,255,255,.8);padding:1px 5px;border-radius:3px;letter-spacing:.04em}
+.mob-embed{margin:6px 0 3px 46px;background:#2B2D31;border-radius:0 6px 6px 0;padding:10px 14px}
+.mob-embed.red{border-left:3px solid #C84040}
+.mob-embed.grn{border-left:3px solid #7DAF95}
+.mob-emb-title{font-size:14px;font-weight:700;color:white;margin-bottom:8px;line-height:1.3}
+.mob-emb-body{font-size:13px;color:#B5BAC1;line-height:1.6}
+.mob-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.mf-nm{font-size:11px;font-weight:600;color:rgba(255,255,255,.7);margin-bottom:2px}
+.mf-vl{font-size:13px;color:#B5BAC1}
+.mob-preview{font-size:13px;color:rgba(255,255,255,.45);font-style:italic;
+  padding:8px 10px;background:rgba(0,0,0,.18);border-radius:4px;
+  margin:6px 0;border-left:2px solid rgba(255,255,255,.1)}
+.mob-reason{font-size:13px;color:#B5BAC1;line-height:1.5;
+  padding:8px 10px;background:rgba(0,0,0,.14);border-radius:4px;margin:6px 0}
+.mob-vbtns{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.mob-vbtn{font-size:12px;font-weight:600;padding:8px 14px;border-radius:4px;
+  border:none;cursor:pointer;font-family:var(--fb);min-height:36px;
+  transition:filter .15s,opacity .2s}
+.mob-vbtn:not(:disabled):active{filter:brightness(1.2)}
+.mob-vbtn:disabled{opacity:.35;cursor:default}
+.mob-vbtn.d{background:#da373c;color:white}
+.mob-vbtn.p{background:#5865f2;color:white}
+.mob-vbtn.w{background:#c8956a;color:white}
+.mob-vbtn.n{background:#4e5058;color:white}
+.mob-action-note{margin-top:8px;padding:8px 10px;background:rgba(255,255,255,.06);
+  border-radius:4px;font-size:12px;color:rgba(255,255,255,.5);line-height:1.5}
+.mob-ch-lnk{background:rgba(88,101,242,.3);color:#8BA4E7;border-radius:3px;
+  padding:0 4px;font-weight:500;font-size:13px;cursor:pointer}
+.mob-u-lnk{background:rgba(88,101,242,.2);color:#8BA4E7;border-radius:3px;
+  padding:0 4px;font-weight:500;font-size:13px}
+.mob-emb-checks{display:flex;flex-direction:column;gap:5px;
+  font-size:13px;color:rgba(255,255,255,.6);margin-top:8px}
+.mob-inputbar{padding:8px 12px;padding-bottom:calc(8px + env(safe-area-inset-bottom));
+  flex-shrink:0;background:#313338}
+.mob-input-box{background:#383A40;border-radius:22px;padding:10px 16px;
+  font-size:14px;color:rgba(255,255,255,.3);display:flex;align-items:center;gap:8px}
+.mob-input-plus{width:24px;height:24px;background:rgba(255,255,255,.1);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+  color:rgba(255,255,255,.4);flex-shrink:0}
+[data-mob-content]{display:none}
+[data-mob-content].mob-active{display:flex;flex-direction:column;flex:1;overflow:hidden}
+
+/* Sticky mobile CTA */
+.mob-sticky-cta{display:none}
+@media(max-width:767px){
+  .mob-sticky-cta{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:98;
+    padding:10px 16px;padding-bottom:calc(10px + env(safe-area-inset-bottom));
+    background:rgba(13,26,48,.97);backdrop-filter:blur(12px);
+    border-top:1px solid rgba(255,255,255,.08);gap:10px;
+    transform:translateY(100%);transition:transform .4s ease}
+  .mob-sticky-cta.show{transform:translateY(0)}
+  .mob-sticky-cta .btn-primary{flex:1;font-size:15px;padding:13px 16px;
+    justify-content:center;max-width:none}
+  .mob-sticky-demo-btn{padding:13px 22px;min-width:80px;border-radius:10px;background:linear-gradient(135deg,#D4606E,#c04e5c);
+    border:none;color:white;font-size:13px;font-weight:700;cursor:pointer;
+    box-shadow:0 2px 12px rgba(212,96,110,.35);white-space:nowrap}
+}
+
+</style>
+</head>
+<body>
+
+<!-- MOBILE STICKY CTA -->
+<div class="mob-sticky-cta" id="mob-sticky">
+  <a href="https://discord.com/oauth2/authorize?client_id=1254748316563017789&permissions=8&integration_type=0&scope=bot+applications.commands" class="btn-primary" target="_blank" rel="noopener noreferrer">Adicionar ao Discord — Grátis</a>
+  <button class="mob-sticky-demo-btn" onclick="openDemo()">Demo</button>
+</div>
+
+<!-- SCROLL PROGRESS + BACK TO TOP -->
+<div id="scroll-progress" aria-hidden="true"></div>
+<button id="back-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<!-- NAV -->
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="/index.html" class="nav-logo" aria-label="SaferChatAI home">
+        <div class="nav-logomark">
+          <img src="https://raw.githubusercontent.com/BruzelBrunft/myWebsite/refs/heads/main/SaferChat%20AI%20Transparent.png" alt="" width="32" height="32" style="width:32px;height:32px;object-fit:contain;display:block" fetchpriority="high">
+        </div>
+        <span class="nav-wordmark">SaferChatAI</span>
+      </a>
+
+      <!-- Desktop nav -->
+      <div class="nav-right">
+        <ul class="nav-links" id="nav-links-desktop">
+          <li><a href="#how-it-works">Como funciona</a></li>
+          <li><a href="#features">Recursos</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+        <!-- CTA — primary action -->
+        <a href="https://discord.com/oauth2/authorize?client_id=1254748316563017789&permissions=8&integration_type=0&scope=bot+applications.commands" class="btn-nav" target="_blank" rel="noopener noreferrer" aria-label="Add SaferChatAI to Discord">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0 8.4 8.4 0 0 0-.412-.833.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085 8 8 0 0 1-1.249.594.05.05 0 0 0-.03.03.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.2 13.2 0 0 0 4.001-2.02.05.05 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.03.03 0 0 0-.02-.019"/></svg> Adicionar ao Discord
+        </a>
+        <!-- Language switcher — secondary, after CTA, separated by divider -->
+        <div class="lang-switch" id="lang-switch">
+          <button class="lang-btn" id="lang-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Change language">
+            <span id="lang-label">PT</span>
+            <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="lang-dropdown" id="lang-dropdown" role="listbox">
+            <a href="/index.html"  class="lang-opt" data-lang="en"><span class="lang-opt-flag">🇬🇧</span>English<span class="lang-opt-dot"></span></a>
+            <a href="/de/"         class="lang-opt"        data-lang="de"><span class="lang-opt-flag">🇩🇪</span>Deutsch<span class="lang-opt-dot"></span></a>
+            <a href="/es/"         class="lang-opt"        data-lang="es"><span class="lang-opt-flag">🇪🇸</span>Español<span class="lang-opt-dot"></span></a>
+            <a href="/fr/"         class="lang-opt"        data-lang="fr"><span class="lang-opt-flag">🇫🇷</span>Français<span class="lang-opt-dot"></span></a>
+            <a href="/pt-br/"      class="lang-opt active" data-lang="pt"><span class="lang-opt-flag">🇧🇷</span>Português<span class="lang-opt-dot"></span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <div class="nav-ham" id="hamburger" role="button" aria-label="Toggle menu" aria-expanded="false" tabindex="0" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+  <!-- Mobile menu (separate from desktop, avoids flex conflicts) -->
+  <ul class="nav-links-mob" id="nav-links-mob" role="menu">
+    <li role="none"><a href="#how-it-works" role="menuitem">Como funciona</a></li>
+    <li role="none"><a href="#features"     role="menuitem">Recursos</a></li>
+    <li role="none"><a href="#faq"          role="menuitem">FAQ</a></li>
+    <li role="none" style="border-bottom:none;padding:0">
+      <div class="mob-lang-strip" role="group" aria-label="Language selection">
+        <a href="/index.html" class="mob-lang" aria-label="English">EN</a>
+        <span class="mob-lang-sep" aria-hidden="true">·</span>
+        <a href="/de/"        class="mob-lang"        aria-label="Deutsch">DE</a>
+        <span class="mob-lang-sep" aria-hidden="true">·</span>
+        <a href="/es/"        class="mob-lang"        aria-label="Español">ES</a>
+        <span class="mob-lang-sep" aria-hidden="true">·</span>
+        <a href="/fr/"        class="mob-lang"        aria-label="Français">FR</a>
+        <span class="mob-lang-sep" aria-hidden="true">·</span>
+        <a href="/pt-br/"     class="mob-lang"        aria-label="Português">PT</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-orb"></div><div class="hero-orb-2"></div><div class="hero-grid"></div>
+  <div class="container">
+    <div class="hero-inner">
+
+      <!-- Text side -->
+      <div>
+        <div class="hero-badge"><div class="hero-badge-dot"></div><span class="hero-badge-text">Beta gratuito — Participe agora</span></div>
+        <h1 class="display" style="max-width:560px">Sua comunidade<br>merece mais do que<br><em>uma lista de palavras-chave.</em></h1>
+        <p class="hero-sub">Assédio, discurso de ódio e comportamento tóxico não seguem regras. SaferChatAI entende o contexto — não apenas captura palavras.</p>
+        <div class="hero-actions">
+          <a href="https://discord.com/oauth2/authorize?client_id=1254748316563017789&permissions=8&integration_type=0&scope=bot+applications.commands" class="btn-primary" target="_blank" rel="noopener noreferrer">
+            <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0 8.4 8.4 0 0 0-.412-.833.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085 8 8 0 0 1-1.249.594.05.05 0 0 0-.03.03.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.2 13.2 0 0 0 4.001-2.02.05.05 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.03.03 0 0 0-.02-.019"/></svg>
+            Adicionar ao Discord — Beta gratuito
+          </a>
+          <a href="#how-it-works" class="btn-ghost btn-ghost-howit">Ver como funciona →</a>
+        </div>
+        <button class="btn-mob-demo" onclick="openDemo()">
+          <span class="btn-mob-demo-live"></span>
+          Experimente a demo interativa — Ao vivo
+        </button>
+        <p class="hero-note">Sem cartão de crédito &nbsp;·&nbsp; Configuração em 2 min &nbsp;·&nbsp; Grátis</p>
+      </div>
+
+      <!-- Discord Demo -->
+      <div class="hero-visual">
+
+        <!-- Floating "Detectado pelo SaferChatAI" badge -->
+        <div class="vigil-intercepted">
+          <span class="vi-icon">🛡️</span>
+          <div>
+            <div class="vi-label">Detectado pelo SaferChatAI</div>
+            <div class="vi-val">Detecção com contexto</div>
+          </div>
+        </div>
+
+        <div class="demo-label">
+          <div class="demo-pill"><div class="demo-pill-dot"></div><span>LIVE DEMO</span></div>
+          <span class="demo-hint">Clique em canais diferentes <span class="demo-hint-arrow">→</span></span>
+        </div>
+
+        <div class="discord-window">
+
+          <!-- Server strip -->
+          <div class="dc-servers">
+            <div class="dc-sv active" style="background:#5865F2"><div class="dc-sv-pill"></div>G</div>
+            <div class="dc-sv" style="background:#3BA55D;opacity:.5">M</div>
+            <div class="dc-sv" style="background:#EB459E;opacity:.35">A</div>
+          </div>
+
+          <!-- Sidebar -->
+          <div class="dc-sidebar">
+            <div class="dc-srv-head">
+              <div class="dc-srv-name">Gaming Hub</div>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+            <div class="dc-cat">Text Channels</div>
+            <div class="dc-ch unread" data-ch="general" onclick="switchCh('general')">
+              <span class="hash">#</span><span class="dc-ch-lbl">general</span>
+              <span class="ch-badge" id="general-badge">1</span>
+            </div>
+            <div class="dc-ch" data-ch="announcements" onclick="switchCh('announcements')">
+              <span class="hash">#</span><span class="dc-ch-lbl">announcements</span>
+            </div>
+            <div class="dc-ch active" data-ch="mod-logs" onclick="switchCh('mod-logs')">
+              <span class="hash">#</span><span class="dc-ch-lbl">mod-logs</span>
+            </div>
+            <div class="dc-cat" style="margin-top:4px">Voice</div>
+            <div class="dc-ch" style="opacity:.4;pointer-events:none"><span style="font-size:13px;opacity:.4">🔊</span><span class="dc-ch-lbl">Lounge</span></div>
+            <div class="dc-userbar">
+              <div class="dc-uav" style="background:#5865F2">Y</div>
+              <div><div class="dc-uname">you</div><div class="dc-udisc">#0001</div></div>
+            </div>
+          </div>
+
+          <!-- Main chat area -->
+          <div class="dc-main">
+            <div class="dc-titlebar">
+              <div class="dc-titlebar-ch"><span class="hash">#</span><span id="dc-ch-title">mod-logs</span></div>
+              <div class="dc-sep"></div>
+              <div class="dc-topic" id="dc-ch-topic">SaferChatAI mod reports · visible to mods only 🔒</div>
+            </div>
+
+            <!-- #general -->
+            <div class="dc-body" data-content="general" style="display:none">
+              <div class="dc-msg">
+                <div class="dc-av" style="background:#5865F2">G</div>
+                <div class="dc-mc">
+                  <div class="dc-un">G_Amer <span style="font-size:10px;color:#72767D;font-weight:400">Today at 14:22</span></div>
+                  <div class="dc-txt">anyone know where to download gta VI for free? asking for a friend 👀</div>
+                </div>
+              </div>
+              <div class="dc-msg">
+                <div class="dc-av" style="background:#57F287">K</div>
+                <div class="dc-mc">
+                  <div class="dc-un" style="color:#57F287">Kai <span style="font-size:10px;color:#72767D;font-weight:400">14:23</span></div>
+                  <div class="dc-txt">bro it's literally not even out yet 💀 you okay??</div>
+                </div>
+              </div>
+              <div class="dc-msg">
+                <div class="dc-av" style="background:#ED4245">x</div>
+                <div class="dc-mc">
+                  <div class="dc-un" style="color:#ED4245">xXDarkLord99Xx <span style="font-size:10px;color:#72767D;font-weight:400">14:23</span></div>
+                  <div class="dc-txt">holy shit are you actually braindead?? go get a job u absolute broke loser lmaooo</div>
+                </div>
+              </div>
+              <div class="dc-msg" style="opacity:.38;margin-top:3px">
+                <div class="dc-av" style="background:#ED4245;opacity:.5">x</div>
+                <div class="dc-mc"><div class="dc-txt del">🛡️ Message deleted by SaferChatAI</div></div>
+              </div>
+            </div>
+
+            <!-- #announcements -->
+            <div class="dc-body" data-content="announcements" style="display:none">
+              <div class="dc-msg">
+                <div class="dc-av" style="background:linear-gradient(135deg,#243660,#D4909A)">S</div>
+                <div class="dc-mc">
+                  <div class="dc-un" style="color:#D4909A">SaferChatAI<span class="bot-tag">APP</span><span style="font-size:10px;color:#72767D;font-weight:400">Today at 14:18</span></div>
+                  <div class="dc-embed grn" style="max-width:320px;margin-left:0">
+                    <div class="emb-title">🛡️ SaferChatAI is now active on <strong>Gaming Hub!</strong></div>
+                    <div class="emb-body">
+                      Your server is now protected. Here's what happens automatically:
+                      <div class="emb-checks">
+                        <div>✅ AI monitors all messages in real time</div>
+                        <div>✅ Suspicious messages go straight to <span class="ch-link" onclick="switchCh('mod-logs')">#mod-logs</span></div>
+                        <div>✅ Mod team decides — Delete, Warn, Timeout or Ban</div>
+                        <div>✅ Bot never auto-bans. Always human control.</div>
+                      </div>
+                      <div style="margin-top:10px;font-size:11px;color:rgba(255,255,255,.28)">⚙️ Adjust anytime with <code style="background:rgba(255,255,255,.08);padding:1px 5px;border-radius:3px">/config</code></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- #mod-logs -->
+            <div class="dc-body" data-content="mod-logs">
+              <div class="dc-msg">
+                <div class="dc-av" style="background:linear-gradient(135deg,#243660,#D4909A)">S</div>
+                <div class="dc-mc">
+                  <div class="dc-un" style="color:#D4909A">SaferChatAI<span class="bot-tag">APP</span><span style="font-size:10px;color:#72767D;font-weight:400">14:23</span></div>
+                  <div class="dc-embed red" style="margin-left:0;max-width:330px" id="mod-embed">
+                    <div style="font-size:13px;font-weight:700;color:white;margin-bottom:8px">💢 Suspicious Message &nbsp;·&nbsp; 🔴 HIGH PRIORITY</div>
+                    <div class="mod-fields">
+                      <div>
+                        <div class="mf-name">👤 Author</div>
+                        <div class="mf-val"><span class="u-link">@xXDarkLord99Xx</span></div>
+                      </div>
+                      <div>
+                        <div class="mf-name">📍 Channel</div>
+                        <div class="mf-val"><span class="ch-link" onclick="switchCh('general')">#general</span></div>
+                      </div>
+                      <div>
+                        <div class="mf-name">🏷️ Category</div>
+                        <div class="mf-val">Harassment</div>
+                      </div>
+                    </div>
+                    <div class="mod-preview">"holy shit are you actually braindead?? go get a job u absolute broke loser lmaooo"</div>
+                    <div class="mod-reason">Personal attack triggered by an innocent question. "Braindead" + "broke loser" directed at a specific member — unprovoked escalation.</div>
+                    <div class="vbtns" id="vbtns">
+                      <button class="vbtn d" onclick="modAction(this,'delete')">🗑️ Delete</button>
+                      <button class="vbtn p" onclick="modAction(this,'warn')">⚠️ Warn</button>
+                      <button class="vbtn w" onclick="modAction(this,'timeout')">⏰ Timeout</button>
+                      <button class="vbtn n" onclick="modAction(this,'fp')">❌ False Positive</button>
+                      <button class="vbtn b" onclick="modAction(this,'ban')">🔨 Ban</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dc-inputbar">
+              <div class="dc-input-box">
+                <div class="dc-plus">+</div>
+                <span>Message <span id="dc-input-ch">#mod-logs</span></span>
+              </div>
+            </div>
+          </div><!-- /dc-main -->
+
+        </div><!-- /discord-window -->
+      </div><!-- /hero-visual -->
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="proof-bar">
+  <div class="container">
+    <div class="proof-inner">
+      <div class="proof-item"><span class="trust-emoji">🛡️</span><span class="proof-num">Sem banimentos automáticos</span></div>
+      <div class="proof-sep"></div>
+      <div class="proof-item"><span class="trust-emoji">⚙️</span><span class="proof-num">Configuração em 2 min</span></div>
+      <div class="proof-sep"></div>
+      <div class="proof-item"><span class="trust-emoji">🔒</span><span class="proof-num">Você controla cada ação</span></div>
+    </div>
+    <p style="text-align:center;margin-top:12px;font-size:11px;color:rgba(255,255,255,.25);letter-spacing:.04em;text-transform:uppercase">Para servidores de games, anime e comunidades</p>
+  </div>
+</div>
+
+<!-- COMPARISON -->
+<section class="section-dark" id="problem">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="label label-light">O que o AutoMod não consegue cobrir</p>
+      <h2 class="display-md" style="color:white">Palavras-chave não são suficientes.</h2>
+      <p style="color:rgba(255,255,255,.45)">O comportamento tóxico raramente se anuncia. Ele se esconde no contexto, no subtexto, em frases que „tecnicamente não são ofensas“ mas que incomodam do mesmo jeito.</p>
+    </div>
+    <div class="comp-grid">
+      <div class="comp-card fail reveal reveal-delay-1">
+        <div class="comp-head">
+          <span class="comp-icon">🤖</span>
+          <div><div class="comp-name">Discord AutoMod /<br>Keyword Rules</div><div class="comp-sub">Baseado em regras, cego ao contexto</div></div>
+        </div>
+        <div class="comp-body">
+          <div class="comp-scenario">"Fuk off, your setup is embarrassing lmao, typical behaviour from people like you"</div>
+          <div class="comp-res bad"><span class="comp-ri">✗</span><span>Sem correspondência exata — „Fuk“ contorna o filtro. O assédio passa despercebido.</span></div>
+          <div class="comp-scenario" style="margin-top:16px">"not being racist but statistically those communities are just more aggressive, it's just facts lol"</div>
+          <div class="comp-res bad"><span class="comp-ri">✗</span><span>Tecnicamente educado. Sem palavrões diretos. Sua comunidade absorve discurso de ódio codificado sem perceber.</span></div>
+        </div>
+      </div>
+      <div class="vs-div"><div class="vs-circle">VS</div></div>
+      <div class="comp-card win reveal reveal-delay-2">
+        <div class="comp-head">
+          <span class="comp-icon">🛡️</span>
+          <div><div class="comp-name" style="color:#D4909A">SaferChatAI</div><div class="comp-sub">Context-aware AI</div></div>
+        </div>
+        <div class="comp-body">
+          <div class="comp-scenario">"Fuk off, your setup is embarrassing lmao, typical behaviour from people like you"</div>
+          <div class="comp-res good"><span class="comp-ri">✓</span><span>Assédio detectado — erro de digitação ou não. Ataque pessoal + „gente como você“ = sinalizado para sua equipe de moderação.</span></div>
+          <div class="comp-scenario" style="margin-top:16px">"not being racist but statistically those communities are just more aggressive, it's just facts lol"</div>
+          <div class="comp-res good"><span class="comp-ri">✓</span><span>Discurso de ódio codificado identificado. Enquadramento racial pseudoestatístico — a IA vê o padrão. Sinalizado.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section-light" id="how-it-works">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="label label-muted">Configuração</p>
+      <h2 class="display-md">Pronto em 2 minutos.</h2>
+      <p>Sem arquivos de configuração. Sem regras complexas. Adicione o bot e diga onde enviar os relatórios.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step reveal reveal-delay-1">
+        <div class="step-num">1</div>
+        <h3>Adicione o SaferChatAI ao seu servidor</h3>
+        <p>Clique no link, selecione seu servidor e aprove as permissões. 30 segundos — sem conta necessária.</p>
+        <a href="https://discord.com/oauth2/authorize?client_id=1254748316563017789&permissions=8&integration_type=0&scope=bot+applications.commands" class="add-link" target="_blank" rel="noopener noreferrer">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0 8.4 8.4 0 0 0-.412-.833.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085 8 8 0 0 1-1.249.594.05.05 0 0 0-.03.03.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.2 13.2 0 0 0 4.001-2.02.05.05 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.03.03 0 0 0-.02-.019"/></svg>
+          Adicionar SaferChatAI ao Discord →
+        </a>
+      </div>
+      <div class="step reveal reveal-delay-2">
+        <div class="step-num">2</div>
+        <h3>Execute <code style="background:var(--p50);padding:2px 6px;border-radius:4px;font-size:13px;color:var(--p500)">/config</code></h3>
+        <p>Escolha seu canal de moderação, ajuste a sensibilidade e marque os canais isentos. Um painel visual — nada para memorizar.</p>
+      </div>
+      <div class="step reveal reveal-delay-3">
+        <div class="step-num">3</div>
+        <h3>Os moderadores decidem</h3>
+        <p>SaferChatAI sinaliza e reporta. Você revisa com ações de um clique. A IA sugere — sua equipe decide.</p>
+      </div>
+    </div>
+    <div class="works-callout reveal">
+      <div>
+        <p class="label label-muted" style="margin-bottom:14px">Após a configuração</p>
+        <h3 style="font-family:var(--fd);font-size:22px;color:var(--ink-soft);margin-bottom:10px;line-height:1.25">Tudo chega ao seu canal de moderação.</h3>
+        <p style="font-size:14px;color:var(--ink-muted);line-height:1.7">Quando o SaferChatAI detecta algo, sua equipe recebe um relatório completo com a conversa, o autor e ações diretas. Sem precisar vasculhar logs manualmente.</p>
+      </div>
+      <div class="callout-checks">
+        <div class="cc-row"><div class="cc-icon">✓</div><span>Cada relatório inclui o fio completo da conversa</span></div>
+        <div class="cc-row"><div class="cc-icon">✓</div><span>Excluir, Avisar, Silenciar ou Falso positivo — um clique</span></div>
+        <div class="cc-row"><div class="cc-icon">✓</div><span>Alertas de automutilação recebem uma notificação urgente dedicada</span></div>
+        <div class="cc-row"><div class="cc-icon">✓</div><span>Aprende com as decisões da sua equipe e melhora toda semana</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section-white" id="features">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="label label-muted">O que o SaferChatAI faz</p>
+      <h2 class="display-md">Criado para comunidades que se importam com seus membros.</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feat-card reveal reveal-delay-1">
+        <div class="feat-icon">🤖</div>
+        <h3>Relatórios com contexto</h3>
+        <p>Sua equipe de moderação vê tudo: quem disse, o que foi dito e a conversa que levou até ali. Chega de ler logs manualmente.</p>
+      </div>
+      <div class="feat-card accent reveal reveal-delay-2">
+        <div class="feat-icon">💙</div>
+        <h3>Detecção de crise</h3>
+        <p>Quando linguagem de automutilação é detectada, o usuário recebe uma mensagem privada e empática com recursos de ajuda — e sua equipe de moderação é alertada imediatamente.</p>
+      </div>
+      <div class="feat-card reveal reveal-delay-3">
+        <div class="feat-icon">⚡</div>
+        <h3>Filtro de palavras instantâneo</h3>
+        <p>Algumas palavras nunca são aceitáveis. Crie sua própria lista de bloqueio e elas somem antes que alguém as veja. Sem atraso — executa antes de tudo.</p>
+      </div>
+      <div class="feat-card reveal reveal-delay-1">
+        <div class="feat-icon">📊</div>
+        <h3>Análises de moderação</h3>
+        <p>Veja o que está realmente acontecendo. Incidentes por categoria, maiores infratores, taxa de falsos positivos — tudo em um painel limpo.</p>
+      </div>
+      <div class="feat-card reveal reveal-delay-2">
+        <div class="feat-icon">🛡️</div>
+        <h3>Você mantém o controle</h3>
+        <p>SaferChatAI nunca baneia automaticamente. Cada mensagem sinalizada tem botões de Excluir, Avisar, Silenciar ou Falso positivo. A IA detecta — seus mods decidem.</p>
+      </div>
+      <div class="feat-card reveal reveal-delay-3">
+        <div class="feat-icon">🎯</div>
+        <h3>Fica mais inteligente com o tempo</h3>
+        <p>Cada falso positivo marcado pelos seus mods ensina o SaferChatAI. Ele se calibra à cultura do seu servidor — menos erros, mais precisão, toda semana.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section-light" id="faq">
+  <div class="container-sm">
+    <div class="section-header reveal">
+      <p class="label label-muted">Perguntas</p>
+      <h2 class="display-md">O que você provavelmente está se perguntando.</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">Acabei de adicionar o bot — o que faço primeiro?<span class="faq-chev">▼</span></button>
+        <div class="faq-a"><p>Execute <code>/config</code> in any channel the bot can see. A visual panel opens — pick your mod channel (where reports get sent), optionally mark exempt channels, and you're done. SaferChatAI starts monitoring immediately. That's genuinely it.</p></div>
+      </div>
+      <div class="faq-item reveal reveal-delay-1">
+        <button class="faq-q" onclick="toggleFaq(this)">E se sinalizar uma mensagem por engano?<span class="faq-chev">▼</span></button>
+        <div class="faq-a"><p>SaferChatAI não exclui automaticamente, a menos que você ative essa opção. Por padrão, reporta ao seu canal de moderação e sua equipe revisa com um clique. Clique em “Falso positivo” em qualquer relatório e o SaferChatAI aprende com isso — fica mais preciso para a cultura do seu servidor com o tempo.</p></div>
+      </div>
+      <div class="faq-item reveal reveal-delay-2">
+        <button class="faq-q" onclick="toggleFaq(this)">Quais permissões o SaferChatAI precisa — e por quê?<span class="faq-chev">▼</span></button>
+        <div class="faq-a"><p>Ler mensagens (para analisar), Enviar mensagens (para relatórios no canal), Gerenciar mensagens (para excluir com sua aprovação) e Moderar membros (para o botão Silenciar). SaferChatAI nunca baneia automaticamente e nunca lê mensagens diretas.</p></div>
+      </div>
+      <div class="faq-item reveal reveal-delay-3">
+        <button class="faq-q" onclick="toggleFaq(this)">O que acontece com as mensagens dos meus usuários?<span class="faq-chev">▼</span></button>
+        <div class="faq-a"><p>Messages are sent to a third-party AI provider for analysis — they delete API data within 30 days and do not train on API inputs. Only flagged messages are stored in SaferChatAI's database. Normal conversation is never saved. Full details in the <a href="privacy.html" style="color:var(--p500)">Política de Privacidade</a>.</p></div>
+      </div>
+      <div class="faq-item reveal reveal-delay-4">
+        <button class="faq-q" onclick="toggleFaq(this)">Meu servidor já usa AutoMod e MEE6. Por que adicionar isso?<span class="faq-chev">▼</span></button>
+        <div class="faq-a"><p>Você não precisa mudar nada — o SaferChatAI funciona junto com sua configuração atual como segunda camada. Ele detecta o que filtros de palavras-chave perdem: assédio que „tecnicamente não infringiu nenhuma regra“, discurso de ódio codificado, toxicidade dependente do contexto. Também evita os falsos positivos que filtros de palavras criam. Pense nele como a camada de julgamento sobre suas regras existentes.</p></div>
+      </div>
+      <div class="faq-item reveal reveal-delay-5">
+        <button class="faq-q" onclick="toggleFaq(this)">É realmente grátis?<span class="faq-chev">▼</span></button>
+        <div class="faq-a"><p>Sim, totalmente grátis durante a beta. Sem cartão de crédito, sem vencimento de avaliação, sem funções bloqueadas. Quando a beta acabar, haverá um plano gratuito permanente e um plano pago para servidores maiores. Usuários beta têm acesso antecipado e desconto permanente.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <span class="label label-light">Free Beta</span>
+    <h2 class="display-md">Sua comunidade deserves<br>um bot que realmente entende.</h2>
+    <p class="cta-sub">Adicione o SaferChatAI em 2 minutos. Grátis durante a beta. Sem cartão de crédito.</p>
+    <div class="cta-actions">
+      <a href="https://discord.com/oauth2/authorize?client_id=1254748316563017789&permissions=8&integration_type=0&scope=bot+applications.commands" class="btn-primary" style="font-size:16px;padding:16px 32px" target="_blank" rel="noopener noreferrer">
+        <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0 8.4 8.4 0 0 0-.412-.833.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085 8 8 0 0 1-1.249.594.05.05 0 0 0-.03.03.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.2 13.2 0 0 0 4.001-2.02.05.05 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.03.03 0 0 0-.02-.019"/></svg>
+        Adicionar ao Discord — Grátis
+      </a>
+      <a href="https://discord.gg/DnXtuaeK2W" class="btn-ghost" target="_blank" rel="noopener noreferrer">Entrar no servidor de suporte →</a>
+    </div>
+    <p class="cta-note">Grátis durante toda a beta. Sem cartão de crédito, sem limites ocultos.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-main">
+      <!-- Left: Brand -->
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo">
+          <div class="footer-logomark">
+            <img src="https://raw.githubusercontent.com/BruzelBrunft/myWebsite/refs/heads/main/SaferChat%20AI%20Transparent.png" alt="SaferChatAI" width="28" height="28" style="object-fit:contain;display:block" loading="lazy">
+          </div>
+          <span>SaferChatAI</span>
+        </a>
+      </div>
+
+      <!-- Center: Links & Copyright -->
+      <div class="footer-center">
+        <ul class="footer-links">
+          <li><a href="https://discord.gg/DnXtuaeK2W" target="_blank" rel="noopener noreferrer">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0 8.4 8.4 0 0 0-.412-.833.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085 8 8 0 0 1-1.249.594.05.05 0 0 0-.03.03.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.2 13.2 0 0 0 4.001-2.02.05.05 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.03.03 0 0 0-.02-.019"/></svg>
+            Servidor de suporte
+          </a></li>
+          <li><a href="#" style="opacity:.5;cursor:default">Top.gg (em breve)</a></li>
+        </ul>
+        <p class="footer-copy">© 2026 SaferChatAI · Todos os direitos reservados</p>
+      </div>
+
+      <!-- Right: Spacer (for grid alignment) -->
+      <div></div>
+    </div>
+
+    <!-- Bottom: Legal Links -->
+    <div class="footer-legal">
+      <ul class="legal-links">
+        <li><a href="impressum.html">Aviso Legal (Impressum)</a></li>
+        <li><a href="privacy.html">Política de Privacidade</a></li>
+        <li><a href="tos.html">Termos de Serviço</a></li>
+      </ul>
+      <p class="footer-location">SaferChatAI · Innsbruck, Áustria</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════
+     FULLSCREEN MOBILE DEMO OVERLAY
+     Hidden on desktop via CSS, triggered on mobile
+════════════════════════════════════════════════ -->
+<div id="demo-overlay">
+
+  <!-- Channel drawer backdrop -->
+  <div class="mob-drawer-backdrop" id="mob-backdrop" onclick="closeMobDrawer()"></div>
+
+  <!-- Channel drawer -->
+  <div class="mob-drawer" id="mob-drawer">
+    <div class="mob-drawer-head">
+      <div class="mob-srv-name">🎮 Gaming Hub</div>
+      <div class="mob-srv-sub">1,204 members · 87 online</div>
+    </div>
+    <div class="mob-drawer-channels">
+      <div class="mob-ch-hint"><span class="mob-hint-dot"></span>Toque em um canal para explorar</div>
+      <div class="mob-cat">Text Channels</div>
+      <div class="mob-ch mob-unread" data-mob-ch="general" onclick="mobSwitchCh('general')">
+        <span class="mob-hash-sm">#</span><span style="flex:1">general</span>
+        <span class="mob-ch-badge" id="mob-gbadge">1</span>
+      </div>
+      <div class="mob-ch" data-mob-ch="announcements" onclick="mobSwitchCh('announcements')">
+        <span class="mob-hash-sm">#</span><span>announcements</span>
+      </div>
+      <div class="mob-ch mob-active" data-mob-ch="mod-logs" onclick="mobSwitchCh('mod-logs')">
+        <span class="mob-hash-sm">#</span><span>mod-logs</span>
+      </div>
+    </div>
+    <div class="mob-drawer-user">
+      <div class="mob-uav" style="background:#5865F2">Y</div>
+      <div><div class="mob-uname">you</div><div style="font-size:11px;color:rgba(255,255,255,.3)">#0001</div></div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <div class="mob-header">
+    <div class="mob-header-ham" onclick="toggleMobDrawer()">
+      <svg width="18" height="13" viewBox="0 0 18 13" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2" stroke-linecap="round"><line x1="0" y1="1" x2="18" y2="1"/><line x1="0" y1="6.5" x2="18" y2="6.5"/><line x1="0" y1="12" x2="18" y2="12"/></svg>
+      <span class="mob-ham-label">Channels</span>
+    </div>
+    <div class="mob-ch-info">
+      <span class="mob-hash">#</span>
+      <span class="mob-ch-name" id="mob-ch-title">mod-logs</span>
+    </div>
+    <button class="demo-back" onclick="closeDemo()">← Voltar ao site</button>
+  </div>
+
+  <!-- Channel content wrapper -->
+  <div style="flex:1;display:flex;flex-direction:column;overflow:hidden;position:relative">
+
+    <!-- #general -->
+    <div data-mob-content="general">
+      <div class="mob-messages">
+        <div class="mob-msg">
+          <div class="mob-av" style="background:#5865F2">G</div>
+          <div class="mob-mc">
+            <div class="mob-un">G_Amer <span class="mob-ts">Today at 14:22</span></div>
+            <div class="mob-txt">anyone know where to download gta VI for free? asking for a friend 👀</div>
+          </div>
+        </div>
+        <div class="mob-msg">
+          <div class="mob-av" style="background:#57F287">K</div>
+          <div class="mob-mc">
+            <div class="mob-un" style="color:#57F287">Kai <span class="mob-ts">14:23</span></div>
+            <div class="mob-txt">bro it's literally not even out yet 💀 you okay??</div>
+          </div>
+        </div>
+        <div class="mob-msg">
+          <div class="mob-av" style="background:#ED4245">x</div>
+          <div class="mob-mc">
+            <div class="mob-un" style="color:#ED4245">xXDarkLord99Xx <span class="mob-ts">14:23</span></div>
+            <div class="mob-txt">holy shit are you actually braindead?? go get a job u absolute broke loser lmaooo</div>
+          </div>
+        </div>
+        <div class="mob-msg" style="opacity:.4">
+          <div class="mob-av" style="background:#ED4245;opacity:.5;font-size:16px">🛡️</div>
+          <div class="mob-mc"><div class="mob-txt del">Message deleted by SaferChatAI</div></div>
+        </div>
+      </div>
+      <div class="mob-inputbar"><div class="mob-input-box">
+        <div class="mob-input-plus">+</div>
+        <span style="flex:1">Message #general</span>
+        <span style="font-size:20px">😊</span>
+      </div></div>
+    </div>
+
+    <!-- #announcements -->
+    <div data-mob-content="announcements">
+      <div class="mob-messages">
+        <div class="mob-msg">
+          <div class="mob-av" style="background:linear-gradient(135deg,#243660,#D4909A)">S</div>
+          <div class="mob-mc">
+            <div class="mob-un" style="color:#D4909A">SaferChatAI <span class="mob-bot-tag">APP</span> <span class="mob-ts">Today 14:18</span></div>
+          </div>
+        </div>
+        <div class="mob-embed grn">
+          <div class="mob-emb-title">🛡️ SaferChatAI is now active on <strong>Gaming Hub!</strong></div>
+          <div class="mob-emb-checks">
+            <div>✅ AI monitors all messages in real time</div>
+            <div>✅ Suspicious messages go to <span class="mob-ch-lnk" onclick="mobSwitchCh('mod-logs')">#mod-logs</span></div>
+            <div>✅ Mod team decides — Delete, Warn, Timeout</div>
+            <div>✅ Bot never auto-bans. Always human control.</div>
+          </div>
+          <div style="margin-top:10px;font-size:12px;color:rgba(255,255,255,.3)">⚙️ Configure com <code style="background:rgba(255,255,255,.08);padding:1px 5px;border-radius:3px;color:rgba(255,255,255,.6)">/config</code></div>
+        </div>
+      </div>
+      <div class="mob-inputbar"><div class="mob-input-box">
+        <div class="mob-input-plus">+</div><span style="flex:1">Message #announcements</span>
+      </div></div>
+    </div>
+
+    <!-- #mod-logs (default active) -->
+    <div data-mob-content="mod-logs" class="mob-active">
+      <div class="mob-messages">
+        <div class="mob-msg">
+          <div class="mob-av" style="background:linear-gradient(135deg,#243660,#D4909A)">S</div>
+          <div class="mob-mc">
+            <div class="mob-un" style="color:#D4909A">SaferChatAI <span class="mob-bot-tag">APP</span> <span class="mob-ts">14:23</span></div>
+            <div class="mob-txt" style="font-size:12px;color:rgba(255,255,255,.4)">Mensagem sinalizada para revisão</div>
+          </div>
+        </div>
+        <div class="mob-embed red">
+          <div class="mob-emb-title">💢 Flagged Message &nbsp;·&nbsp; ⚠️ Priority Warning</div>
+          <div class="mob-fields">
+            <div><div class="mf-nm">👤 Author</div><div class="mf-vl"><span class="mob-u-lnk">@xXDarkLord99Xx</span></div></div>
+            <div><div class="mf-nm">📍 Channel</div><div class="mf-vl"><span class="mob-ch-lnk" onclick="mobSwitchCh('general')">#general</span></div></div>
+            <div><div class="mf-nm">🏷️ Category</div><div class="mf-vl">Harassment</div></div>
+          </div>
+          <div class="mob-preview">"holy shit are you actually braindead?? go get a job u absolute broke loser lmaooo"</div>
+          <div class="mob-reason">🤖 Insulto pessoal direto direcionado a um usuário específico. Alta confiança.</div>
+          <div class="mob-vbtns">
+            <button class="mob-vbtn d" onclick="mobModAction(this,'delete')">🗑️ Delete</button>
+            <button class="mob-vbtn p" onclick="mobModAction(this,'warn')">⚠️ Warn</button>
+            <button class="mob-vbtn w" onclick="mobModAction(this,'timeout')">⏳ Timeout</button>
+            <button class="mob-vbtn n" onclick="mobModAction(this,'fp')">✅ Não problemático</button>
+          </div>
+        </div>
+      </div>
+      <div class="mob-inputbar"><div class="mob-input-box">
+        <div class="mob-input-plus">+</div><span style="flex:1">Message #mod-logs</span>
+      </div></div>
+    </div>
+
+  </div><!-- end channel wrapper -->
+</div><!-- end demo overlay -->
+
+<script>
+(function(){
+'use strict';
+
+/* ── SCROLL: progress + back-to-top + sticky + nav bg ── */
+var prog = document.getElementById('scroll-progress');
+var topBtn = document.getElementById('back-top');
+var sticky = document.getElementById('mob-sticky');
+function onScroll(){
+  var s = window.scrollY;
+  var nav = document.getElementById('nav');
+  if(nav) nav.classList.toggle('scrolled', s > 40);
+  if(prog){var h=document.documentElement.scrollHeight-window.innerHeight;prog.style.width=(h>0?s/h*100:0)+'%';}
+  if(topBtn) topBtn.classList.toggle('show', s > 600);
+  if(sticky) sticky.classList.toggle('show', s > 400);
+}
+window.addEventListener('scroll', onScroll, {passive:true});
+
+/* ── SCROLLSPY: reliable bidirectional ── */
+var SPY_IDS = ['how-it-works','features','faq'];
+function updateSpy(){
+  var s = window.scrollY;
+  var current = '';
+  SPY_IDS.forEach(function(id){
+    var el = document.getElementById(id);
+    if(el && el.getBoundingClientRect().top + s - 72 <= s + 8) current = id;
+  });
+  document.querySelectorAll('#nav-links-desktop a[href^="#"]').forEach(function(a){
+    a.classList.toggle('spy-active', a.getAttribute('href') === '#'+current);
+  });
+}
+window.addEventListener('scroll', updateSpy, {passive:true});
+updateSpy();
+
+/* ── SMOOTH SCROLL with nav offset ── */
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click', function(e){
+    var id = a.getAttribute('href').slice(1);
+    var el = document.getElementById(id);
+    if(el){
+      e.preventDefault();
+      window.scrollTo({top: el.getBoundingClientRect().top + window.scrollY - 72, behavior:'smooth'});
+    }
+  });
+});
+
+/* ── NAV HAMBURGER ── */
+function toggleNav(){
+  var mob = document.getElementById('nav-links-mob');
+  var ham = document.getElementById('hamburger');
+  if(!mob||!ham) return;
+  var open = mob.classList.toggle('open');
+  ham.classList.toggle('active', open);
+  ham.setAttribute('aria-expanded', open);
+  if(open) closeLangMenu();
+}
+function closeNav(){
+  var mob = document.getElementById('nav-links-mob');
+  var ham = document.getElementById('hamburger');
+  if(mob) mob.classList.remove('open');
+  if(ham){ ham.classList.remove('active'); ham.setAttribute('aria-expanded','false'); }
+}
+// Expose globally (called from onclick attributes)
+window.toggleNav = toggleNav;
+
+// Close mobile nav on anchor click
+document.querySelectorAll('#nav-links-mob a[href^="#"]').forEach(function(a){
+  a.addEventListener('click', closeNav);
+});
+
+/* ── LANGUAGE SWITCHER (desktop) ── */
+function toggleLangMenu(){
+  var sw = document.getElementById('lang-switch');
+  var btn = document.getElementById('lang-btn');
+  if(!sw) return;
+  var open = sw.classList.toggle('open');
+  if(btn) btn.setAttribute('aria-expanded', open);
+  if(open) closeNav();
+}
+function closeLangMenu(){
+  var sw = document.getElementById('lang-switch');
+  var btn = document.getElementById('lang-btn');
+  if(sw) sw.classList.remove('open');
+  if(btn) btn.setAttribute('aria-expanded','false');
+}
+window.toggleLangMenu = toggleLangMenu;
+
+// Wire up lang-btn click (avoid inline onclick in HTML for CSP compatibility)
+var langBtn = document.getElementById('lang-btn');
+if(langBtn) langBtn.addEventListener('click', function(e){ e.stopPropagation(); toggleLangMenu(); });
+
+// Close on outside click or ESC
+document.addEventListener('click', function(e){
+  var nav = document.getElementById('nav');
+  if(nav && !nav.contains(e.target)){ closeNav(); closeLangMenu(); }
+});
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape'){ closeNav(); closeLangMenu(); }
+});
+
+// One-time first-visit language redirect
+(function(){
+  var LANGS = {de:'/de/',es:'/es/',fr:'/fr/',pt:'/pt-br/','pt-br':'/pt-br/'};
+  var p = location.pathname;
+  if(p !== '/' && p !== '/index.html') return;
+  if(localStorage.getItem('sca-lang-init')) return;
+  var lang = (navigator.language||'').toLowerCase().split('-')[0];
+  localStorage.setItem('sca-lang-init','1');
+  if(LANGS[lang]) location.href = LANGS[lang];
+})();
+
+/* ── REVEAL on scroll ── */
+var revealObs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold: 0.08});
+document.querySelectorAll('.reveal').forEach(function(el){ revealObs.observe(el); });
+
+/* ── FAQ ── */
+window.toggleFaq = function(btn){
+  var it = btn.closest('.faq-item');
+  var wasOpen = it.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(function(i){ i.classList.remove('open'); });
+  if(!wasOpen) it.classList.add('open');
+};
+
+/* ── MOBILE DEMO ── */
+window.openDemo = function(){
+  document.getElementById('demo-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(function(){
+    var d=document.getElementById('mob-drawer'), b=document.getElementById('mob-backdrop');
+    if(d&&b){ d.classList.add('open'); b.classList.add('open'); setTimeout(function(){ closeMobDrawer(); }, 2000); }
+  }, 1500);
+};
+window.closeDemo = function(){
+  document.getElementById('demo-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+};
+window.toggleMobDrawer = function(){
+  document.getElementById('mob-drawer').classList.toggle('open');
+  document.getElementById('mob-backdrop').classList.toggle('open');
+};
+function closeMobDrawer(){
+  var d=document.getElementById('mob-drawer'), b=document.getElementById('mob-backdrop');
+  if(d) d.classList.remove('open');
+  if(b) b.classList.remove('open');
+}
+window.closeMobDrawer = closeMobDrawer;
+
+window.mobSwitchCh = function(ch){
+  document.querySelectorAll('.mob-ch[data-mob-ch]').forEach(function(el){
+    el.classList.toggle('mob-active', el.dataset.mobCh===ch);
+    if(el.dataset.mobCh===ch) el.classList.remove('mob-unread');
+  });
+  document.querySelectorAll('[data-mob-content]').forEach(function(el){
+    var a = el.dataset.mobContent===ch;
+    el.style.display=a?'flex':'none'; el.style.flexDirection=a?'column':'';
+    el.style.flex=a?'1':''; el.style.overflow=a?'hidden':'';
+    el.classList.toggle('mob-active',a);
+  });
+  document.getElementById('mob-ch-title').textContent = ch;
+  if(ch==='general'){var b=document.getElementById('mob-gbadge');if(b){b.style.opacity='0';setTimeout(function(){if(b.parentNode)b.parentNode.removeChild(b);},300);}}
+  closeMobDrawer();
+};
+
+window.mobModAction = function(btn,type){
+  var MAP={delete:['🗑️ Deleted','#2a7a4e','Message deleted.'],warn:['✅ Warned','#5865F2','Warning DM sent.'],timeout:['⏳ Timed out','#C8956A','Timed out 10 min.'],fp:['✅ Noted','#5A8A72','Marked not harmful.']};
+  var r=MAP[type]; if(!r) return;
+  btn.closest('.mob-vbtns').querySelectorAll('.mob-vbtn').forEach(function(b){b.disabled=true;b.style.opacity=(b===btn)?'1':'0.25';});
+  btn.textContent=r[0]; btn.style.background=r[1];
+  var n=document.createElement('div'); n.className='mob-action-note'; n.textContent='✓ '+r[2];
+  btn.closest('.mob-embed').appendChild(n);
+};
+
+// Swipe gesture for demo overlay
+(function(){
+  var ov=document.getElementById('demo-overlay'); if(!ov) return;
+  var sx=0,sy=0;
+  ov.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});
+  ov.addEventListener('touchend',function(e){
+    var dx=e.changedTouches[0].clientX-sx, dy=Math.abs(e.changedTouches[0].clientY-sy);
+    if(dy>50) return;
+    if(dx>60){var d=document.getElementById('mob-drawer'),b=document.getElementById('mob-backdrop');if(d)d.classList.add('open');if(b)b.classList.add('open');}
+    else if(dx<-60) closeMobDrawer();
+  },{passive:true});
+})();
+
+/* ── MOD ACTIONS (desktop demo) ── */
+window.modAction = function(btn,type){
+  var MAP={delete:['✅ Deleted','#2a7a4e','🗑️ Message deleted.'],warn:['✅ Warned','#5865F2','⚠️ Warning DM sent.'],timeout:['✅ Timed out','#C8956A','⏰ Timed out 10 min.'],fp:['✅ Noted','#5A8A72','🧠 Marked false positive.'],ban:['✅ Banned','#8B2222','🔨 Permanently banned.']};
+  var r=MAP[type]; if(!r) return;
+  btn.closest('.vbtns').querySelectorAll('.vbtn').forEach(function(b){b.disabled=true;b.style.cursor='default';b.style.opacity=(b===btn)?'1':'0.3';});
+  btn.textContent=r[0]; btn.style.background=r[1];
+  var n=document.createElement('div'); n.className='action-note'; n.textContent=r[2];
+  btn.closest('.dc-embed').appendChild(n);
+};
+
+/* ── CHANNEL SWITCHING ── */
+var CH={'general':{topic:'General chat · 1,204 members'},'announcements':{topic:'Server announcements — read only'},'mod-logs':{topic:'SaferChatAI mod reports · visible to mods only 🔒'}};
+window.switchCh = function(ch){
+  document.querySelectorAll('.dc-ch[data-ch]').forEach(function(el){el.classList.toggle('active',el.dataset.ch===ch);});
+  document.querySelectorAll('[data-content]').forEach(function(el){
+    if(el.dataset.content===ch){el.style.display='flex';el.style.flexDirection='column';}else{el.style.display='none';}
+  });
+  var t=document.getElementById('dc-ch-title'),p=document.getElementById('dc-ch-topic'),i=document.getElementById('dc-input-ch');
+  if(t)t.textContent=ch; if(p)p.textContent=(CH[ch]||{}).topic||''; if(i)i.textContent='#'+ch;
+  if(ch==='general'){
+    var b=document.getElementById('general-badge'),it=document.querySelector('[data-ch="general"]');
+    if(b){b.style.transition='opacity .3s';b.style.opacity='0';setTimeout(function(){if(b.parentNode)b.parentNode.removeChild(b);},300);}
+    if(it)it.classList.remove('unread');
+  }
+};
+
+})(); // end IIFE
+</script>
+</body>
+</html>
