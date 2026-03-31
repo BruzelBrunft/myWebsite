@@ -3,37 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="description" content="SaferChatAI catches harassment, hate speech and scam links that AutoMod misses — using context-aware AI. Free for Discord servers during beta. 2-minute setup.">
+<title>AI Discord Moderation Bot — SaferChatAI | Free Beta</title>
+<meta name="description" content="SaferChatAI catches harassment, hate speech and scam links that AutoMod misses — context-aware AI, no auto-bans. Free beta, 2-minute setup.">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <link rel="canonical" href="https://saferchatai.com/">
-<link rel="alternate" hreflang="en" href="https://saferchatai.com/">
-<link rel="alternate" hreflang="de" href="https://saferchatai.com/de/">
-<link rel="alternate" hreflang="es" href="https://saferchatai.com/es/">
-<link rel="alternate" hreflang="fr" href="https://saferchatai.com/fr/">
+<link rel="alternate" hreflang="en"    href="https://saferchatai.com/">
+<link rel="alternate" hreflang="de"    href="https://saferchatai.com/de/">
+<link rel="alternate" hreflang="es"    href="https://saferchatai.com/es/">
+<link rel="alternate" hreflang="fr"    href="https://saferchatai.com/fr/">
 <link rel="alternate" hreflang="pt-BR" href="https://saferchatai.com/pt-br/">
 <link rel="alternate" hreflang="x-default" href="https://saferchatai.com/">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="SaferChatAI">
-<meta property="og:url" content="https://saferchatai.com/">
-<meta property="og:title" content="AI Discord Moderation Bot — SaferChatAI | Free Beta">
-<meta property="og:description" content="Catches harassment, hate speech &amp; scam links that AutoMod misses. Context-aware AI, no auto-bans, always human control. Free beta — 2-minute setup.">
-<meta property="og:image" content="https://raw.githubusercontent.com/BruzelBrunft/myWebsite/refs/heads/main/ogbannerWebsite.png">
+<meta property="og:type"        content="website">
+<meta property="og:site_name"   content="SaferChatAI">
+<meta property="og:url"         content="https://saferchatai.com/">
+<meta property="og:title"       content="AI Discord Moderation Bot — SaferChatAI | Free Beta">
+<meta property="og:description" content="Catches harassment, hate speech &amp; scam links AutoMod misses. Context-aware AI, no auto-bans, always human control. Free beta.">
+<meta property="og:image"       content="https://raw.githubusercontent.com/BruzelBrunft/myWebsite/refs/heads/main/ogbannerWebsite.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="SaferChatAI — AI-powered Discord moderation. Your community deserves smarter protection.">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AI Discord Moderation Bot — SaferChatAI | Free Beta">
-<meta name="twitter:description" content="Catches harassment, hate speech &amp; scam links that AutoMod misses. Free beta — 2-minute setup.">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/BruzelBrunft/myWebsite/refs/heads/main/ogbannerWebsite.png">
+<meta property="og:image:alt"   content="SaferChatAI — AI-powered Discord moderation">
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:title"       content="AI Discord Moderation Bot — SaferChatAI">
+<meta name="twitter:description" content="Catches harassment, hate speech &amp; scam links AutoMod misses. Free beta.">
+<meta name="twitter:image"       content="https://raw.githubusercontent.com/BruzelBrunft/myWebsite/refs/heads/main/ogbannerWebsite.png">
+<meta name="theme-color" content="#0D1A30">
 <link rel="icon" href="https://raw.githubusercontent.com/BruzelBrunft/myWebsite/refs/heads/main/SaferChat%20AI%20Transparent.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/BruzelBrunft/myWebsite/refs/heads/main/SaferChat%20AI%20Transparent.png">
-<meta name="theme-color" content="#0D1A30">
-<title>AI Discord Moderation Bot — SaferChatAI | Free Beta</title>
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="icon" href="https://raw.githubusercontent.com/BruzelBrunft/myWebsite/refs/heads/main/SaferChat%20AI%20Transparent.png" type="image/png" sizes="32x32">
-<link rel="apple-touch-icon" href="https://raw.githubusercontent.com/BruzelBrunft/myWebsite/refs/heads/main/SaferChat%20AI%20Transparent.png">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap&display=swap" rel="stylesheet">
 <style>
 :root{
   --ink:#1A2035;--ink-soft:#2D3A52;--ink-muted:#5A6880;
@@ -57,77 +57,91 @@ body{font-family:var(--fb);background:var(--p800);color:var(--ink);overflow-x:hi
 .container-sm{max-width:760px;margin:0 auto;padding:0 40px}
 @media(max-width:768px){.container,.container-sm{padding:0 20px}}
 
-/* SCROLL PROGRESS */
-#scroll-progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--rose);z-index:300;transition:width .08s linear;pointer-events:none}
-/* BACK TO TOP */
-#back-top{position:fixed;bottom:28px;right:24px;width:40px;height:40px;border-radius:50%;background:rgba(13,26,48,.88);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(10px);transition:opacity .25s,transform .25s;z-index:90;color:rgba(255,255,255,.55)}
+/* ── SCROLL PROGRESS + BACK TO TOP ── */
+#scroll-progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--rose);z-index:300;pointer-events:none;will-change:width}
+#back-top{position:fixed;bottom:28px;right:24px;width:40px;height:40px;border-radius:50%;background:rgba(13,26,48,.88);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(10px);transition:opacity .25s,transform .25s;z-index:90;color:rgba(255,255,255,.55);padding:0}
 #back-top.show{opacity:1;transform:translateY(0)}
-#back-top:hover{background:rgba(74,111,165,.55);color:white}
-/* Button press states */
+#back-top:hover{background:rgba(74,111,165,.55);color:white;border-color:rgba(255,255,255,.25)}
+
+/* ── BUTTON PRESS STATES ── */
 .btn-primary:active{transform:scale(.97)!important}
-.btn-ghost:active,.btn-nav:active{transform:scale(.97)!important}
-/* Reduced motion */
+.btn-ghost:active{transform:scale(.97)!important}
+
+/* ── REDUCED MOTION ── */
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}.reveal{opacity:1!important;transform:none!important}}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .3s,border-color .3s,backdrop-filter .3s}
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .3s,backdrop-filter .3s,border-color .3s}
 nav.scrolled{background:rgba(13,26,48,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-dark)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;gap:8px}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
 .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
 .nav-logomark{width:32px;height:32px;display:flex;align-items:center;justify-content:center}
 .nav-wordmark{font-family:var(--fd);font-size:20px;color:white;letter-spacing:-.01em}
-.nav-links{display:flex;align-items:center;gap:28px;list-style:none}
-.nav-links a{font-size:14px;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s;position:relative;padding-bottom:2px}
-.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--rose);transition:width .22s ease}
+
+/* Right group: links → cta → lang */
+.nav-right{display:flex;align-items:center;gap:0}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none;margin-right:28px}
+.nav-links a{font-size:14px;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s;white-space:nowrap;position:relative;padding-bottom:2px}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--rose);transition:width .2s ease}
 .nav-links a:hover{color:white}
 .nav-links a:hover::after,.nav-links a.spy-active::after{width:100%}
 .nav-links a.spy-active{color:white}
-.btn-nav{display:inline-flex!important;align-items:center;gap:8px;background:white;color:var(--p800)!important;font-size:13px!important;font-weight:600!important;padding:8px 18px;border-radius:8px;transition:all .2s}
-.btn-nav:hover{background:var(--p100)!important;transform:translateY(-1px)}
-.btn-nav::after{display:none!important}
-.mob-lang-li{display:none}
 
-/* Language switcher — desktop */
-.lang-switch{position:relative;flex-shrink:0}
-.lang-btn{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:7px;color:rgba(255,255,255,.65);font-size:13px;font-weight:500;padding:6px 10px;cursor:pointer;transition:all .2s;font-family:var(--fb)}
-.lang-btn:hover{background:rgba(255,255,255,.12);color:white}
-.lang-dropdown{position:absolute;top:calc(100% + 8px);right:0;background:rgba(13,26,48,.97);border:1px solid rgba(255,255,255,.1);border-radius:10px;backdrop-filter:blur(16px);padding:6px;min-width:140px;opacity:0;transform:translateY(-6px) scale(.97);pointer-events:none;transition:opacity .18s ease,transform .18s ease;z-index:200}
+/* Language switcher — after CTA, separated by a subtle divider */
+.lang-switch{position:relative;margin-left:12px;padding-left:12px;border-left:1px solid rgba(255,255,255,.1)}
+.lang-btn{display:flex;align-items:center;gap:4px;background:none;border:none;color:rgba(255,255,255,.45);font-size:12px;font-weight:600;letter-spacing:.04em;cursor:pointer;padding:4px 2px;font-family:var(--fb);transition:color .2s;white-space:nowrap}
+.lang-btn:hover{color:rgba(255,255,255,.8)}
+.lang-btn svg{opacity:.5;transition:transform .2s,opacity .2s}
+.lang-switch.open .lang-btn svg{transform:rotate(180deg);opacity:.8}
+.lang-dropdown{position:absolute;top:calc(100% + 10px);right:0;background:rgba(10,22,42,.97);border:1px solid rgba(255,255,255,.1);border-radius:10px;backdrop-filter:blur(20px);padding:5px;min-width:148px;opacity:0;transform:translateY(-4px) scale(.98);pointer-events:none;transition:opacity .16s ease,transform .16s ease;z-index:200;box-shadow:0 8px 32px rgba(0,0,0,.4)}
 .lang-switch.open .lang-dropdown{opacity:1;transform:none;pointer-events:auto}
-.lang-opt{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:6px;font-size:13px;color:rgba(255,255,255,.6);text-decoration:none;transition:background .15s,color .15s;white-space:nowrap}
-.lang-opt:hover{background:rgba(255,255,255,.08);color:white}
-.lang-opt.active{color:white;background:rgba(74,111,165,.2)}
+.lang-opt{display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:6px;font-size:13px;color:rgba(255,255,255,.55);text-decoration:none;transition:background .12s,color .12s;cursor:pointer}
+.lang-opt:hover{background:rgba(255,255,255,.07);color:white}
+.lang-opt.active{color:white;font-weight:600}
+.lang-opt-flag{font-size:15px;line-height:1;flex-shrink:0}
+.lang-opt-dot{width:5px;height:5px;border-radius:50%;background:var(--rose);margin-left:auto;flex-shrink:0;display:none}
+.lang-opt.active .lang-opt-dot{display:block}
+
+/* CTA button */
+.btn-nav{display:inline-flex!important;align-items:center;gap:8px;background:white;color:var(--p800)!important;font-size:13px!important;font-weight:600!important;padding:8px 18px;border-radius:8px;transition:background .2s,transform .2s,box-shadow .2s;white-space:nowrap;flex-shrink:0;line-height:1}
+.btn-nav:hover{background:var(--p100)!important;transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,0,0,.25)}
+.btn-nav:active{transform:scale(.97)!important}
 
 /* Hamburger */
-.nav-ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;border-radius:6px;transition:background .2s;-webkit-tap-highlight-color:transparent;flex-shrink:0}
-.nav-ham:hover{background:rgba(255,255,255,.08)}
-.nav-ham span{display:block;width:22px;height:2px;background:rgba(255,255,255,.75);border-radius:2px;transition:transform .28s ease,opacity .2s ease}
+.nav-ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;border-radius:6px;transition:background .15s;-webkit-tap-highlight-color:transparent;flex-shrink:0}
+.nav-ham:hover{background:rgba(255,255,255,.07)}
+.nav-ham span{display:block;width:22px;height:2px;background:rgba(255,255,255,.7);border-radius:2px;transition:transform .28s ease,opacity .2s ease}
 .nav-ham.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .nav-ham.active span:nth-child(2){opacity:0;transform:scaleX(0)}
 .nav-ham.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
+/* Mobile menu — hidden on desktop */
+.nav-links-mob{display:none}
+
 @media(max-width:768px){
   .nav-ham{display:flex}
-  .lang-switch{display:none}  /* hidden on mobile, shown inside menu */
-  .nav-links{
+  .lang-switch{display:none}
+  .nav-right{display:none}
+  .nav-links-mob{
     position:absolute;top:64px;left:0;right:0;
-    background:rgba(13,26,48,.97);backdrop-filter:blur(14px);
-    border-bottom:1px solid var(--border-dark);
+    background:rgba(10,20,38,.98);backdrop-filter:blur(16px);
+    border-bottom:1px solid rgba(255,255,255,.07);
     flex-direction:column;align-items:stretch;gap:0;
     max-height:0;overflow:hidden;
     transition:max-height .32s cubic-bezier(.4,0,.2,1);
-    display:flex;pointer-events:none;
+    display:flex;pointer-events:none;list-style:none;padding:0;margin:0;
   }
-  .nav-links.open{max-height:420px;pointer-events:auto}
-  .nav-links li{border-bottom:1px solid rgba(255,255,255,.05)}
-  .nav-links li:last-child{border-bottom:none}
-  .nav-links a{display:block;padding:15px 24px;font-size:15px}
-  .nav-links a::after{display:none}
-  .nav-links .nav-cta{display:none}
-  .mob-lang-li{display:block!important}
-  /* Mobile language row */
-  .mob-lang-row{display:flex;gap:6px;padding:12px 24px 14px;flex-wrap:wrap}
-  .mob-lang{font-size:12px;font-weight:600;padding:5px 10px;border-radius:6px;border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.45);text-decoration:none;transition:all .18s}
-  .mob-lang:hover,.mob-lang.active{background:rgba(74,111,165,.25);border-color:rgba(74,111,165,.5);color:white}
+  .nav-links-mob.open{max-height:380px;pointer-events:auto}
+  .nav-links-mob li{border-bottom:1px solid rgba(255,255,255,.05)}
+  .nav-links-mob li:last-child{border-bottom:none}
+  .nav-links-mob a{display:block;padding:15px 24px;font-size:15px;color:rgba(255,255,255,.7);text-decoration:none;transition:color .15s}
+  .nav-links-mob a:hover{color:white}
+  /* Mobile language strip — subtle, bottom of menu */
+  .mob-lang-strip{display:flex;align-items:center;gap:0;padding:10px 24px 12px;flex-wrap:nowrap}
+  .mob-lang-sep{color:rgba(255,255,255,.15);font-size:11px;margin:0 6px}
+  .mob-lang{font-size:11px;font-weight:600;letter-spacing:.06em;color:rgba(255,255,255,.3);text-decoration:none;transition:color .15s;padding:2px 0}
+  .mob-lang:hover{color:rgba(255,255,255,.65)}
+  .mob-lang.active{color:var(--rose)}
 }
 
 /* HERO */
@@ -597,64 +611,75 @@ footer{background:var(--p900);border-top:1px solid var(--border-dark);padding:48
   <button class="mob-sticky-demo-btn" onclick="openDemo()">Demo</button>
 </div>
 
-<!-- NAV -->
-<div id="scroll-progress"></div>
+<!-- SCROLL PROGRESS + BACK TO TOP -->
+<div id="scroll-progress" aria-hidden="true"></div>
 <button id="back-top" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg>
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
 </button>
-<nav id="nav">
+
+<!-- NAV -->
+<nav id="nav" role="navigation" aria-label="Main navigation">
   <div class="container">
     <div class="nav-inner">
-      <a href="/index.html" class="nav-logo">
+      <a href="/index.html" class="nav-logo" aria-label="SaferChatAI home">
         <div class="nav-logomark">
-          <img src="https://raw.githubusercontent.com/BruzelBrunft/myWebsite/refs/heads/main/SaferChat%20AI%20Transparent.png" alt="SaferChatAI" width="32" height="32" style="width:32px;height:32px;object-fit:contain;display:block">
+          <img src="https://raw.githubusercontent.com/BruzelBrunft/myWebsite/refs/heads/main/SaferChat%20AI%20Transparent.png" alt="" width="32" height="32" style="width:32px;height:32px;object-fit:contain;display:block" fetchpriority="high">
         </div>
         <span class="nav-wordmark">SaferChatAI</span>
       </a>
 
-      <!-- Desktop: page links -->
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#how-it-works">How it works</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li class="nav-cta">
-          <a href="https://discord.com/oauth2/authorize?client_id=1254748316563017789&permissions=8&integration_type=0&scope=bot+applications.commands" class="btn-nav" target="_blank" rel="noopener noreferrer">
-            <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0 8.4 8.4 0 0 0-.412-.833.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085 8 8 0 0 1-1.249.594.05.05 0 0 0-.03.03.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.2 13.2 0 0 0 4.001-2.02.05.05 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.03.03 0 0 0-.02-.019"/></svg> Add to Discord
-          </a>
-        </li>
-        <!-- Mobile language row (visible only in hamburger menu) -->
-        <li class="mob-lang-li" style="border-bottom:none">
-          <div class="mob-lang-row">
-            <a href="/index.html" class="mob-lang active">EN</a>
-            <a href="/de/" class="mob-lang">DE</a>
-            <a href="/es/" class="mob-lang">ES</a>
-            <a href="/fr/" class="mob-lang">FR</a>
-            <a href="/pt-br/" class="mob-lang">PT</a>
+      <!-- Desktop nav -->
+      <div class="nav-right">
+        <ul class="nav-links" id="nav-links-desktop">
+          <li><a href="#how-it-works">How it works</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+        <!-- CTA — primary action -->
+        <a href="https://discord.com/oauth2/authorize?client_id=1254748316563017789&permissions=8&integration_type=0&scope=bot+applications.commands" class="btn-nav" target="_blank" rel="noopener noreferrer" aria-label="Add SaferChatAI to Discord">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0 8.4 8.4 0 0 0-.412-.833.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085 8 8 0 0 1-1.249.594.05.05 0 0 0-.03.03.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.2 13.2 0 0 0 4.001-2.02.05.05 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.03.03 0 0 0-.02-.019"/></svg> Add to Discord
+        </a>
+        <!-- Language switcher — secondary, after CTA, separated by divider -->
+        <div class="lang-switch" id="lang-switch">
+          <button class="lang-btn" id="lang-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Change language">
+            <span id="lang-label">EN</span>
+            <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="lang-dropdown" id="lang-dropdown" role="listbox">
+            <a href="/index.html"  class="lang-opt active" data-lang="en"><span class="lang-opt-flag">🇬🇧</span>English<span class="lang-opt-dot"></span></a>
+            <a href="/de/"         class="lang-opt"        data-lang="de"><span class="lang-opt-flag">🇩🇪</span>Deutsch<span class="lang-opt-dot"></span></a>
+            <a href="/es/"         class="lang-opt"        data-lang="es"><span class="lang-opt-flag">🇪🇸</span>Español<span class="lang-opt-dot"></span></a>
+            <a href="/fr/"         class="lang-opt"        data-lang="fr"><span class="lang-opt-flag">🇫🇷</span>Français<span class="lang-opt-dot"></span></a>
+            <a href="/pt-br/"      class="lang-opt"        data-lang="pt"><span class="lang-opt-flag">🇧🇷</span>Português<span class="lang-opt-dot"></span></a>
           </div>
-        </li>
-      </ul>
-
-      <!-- Desktop: language switcher -->
-      <div class="lang-switch" id="lang-switch">
-        <button class="lang-btn" onclick="toggleLangMenu()" aria-label="Change language" aria-expanded="false">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          <span id="lang-label">EN</span>
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-        <div class="lang-dropdown" id="lang-dropdown" role="menu">
-          <a href="/index.html" class="lang-opt active" data-lang="en">🇬🇧 English</a>
-          <a href="/de/" class="lang-opt" data-lang="de">🇩🇪 Deutsch</a>
-          <a href="/es/" class="lang-opt" data-lang="es">🇪🇸 Español</a>
-          <a href="/fr/" class="lang-opt" data-lang="fr">🇫🇷 Français</a>
-          <a href="/pt-br/" class="lang-opt" data-lang="pt">🇧🇷 Português</a>
         </div>
       </div>
 
-      <div class="nav-ham" id="hamburger" aria-label="Toggle menu" onclick="toggleNav()">
+      <!-- Mobile hamburger -->
+      <div class="nav-ham" id="hamburger" role="button" aria-label="Toggle menu" aria-expanded="false" tabindex="0" onclick="toggleNav()">
         <span></span><span></span><span></span>
       </div>
     </div>
   </div>
+  <!-- Mobile menu (separate from desktop, avoids flex conflicts) -->
+  <ul class="nav-links-mob" id="nav-links-mob" role="menu">
+    <li role="none"><a href="#how-it-works" role="menuitem">How it works</a></li>
+    <li role="none"><a href="#features"     role="menuitem">Features</a></li>
+    <li role="none"><a href="#faq"          role="menuitem">FAQ</a></li>
+    <li role="none" style="border-bottom:none;padding:0">
+      <div class="mob-lang-strip" role="group" aria-label="Language selection">
+        <a href="/index.html" class="mob-lang active" aria-label="English">EN</a>
+        <span class="mob-lang-sep" aria-hidden="true">·</span>
+        <a href="/de/"        class="mob-lang"        aria-label="Deutsch">DE</a>
+        <span class="mob-lang-sep" aria-hidden="true">·</span>
+        <a href="/es/"        class="mob-lang"        aria-label="Español">ES</a>
+        <span class="mob-lang-sep" aria-hidden="true">·</span>
+        <a href="/fr/"        class="mob-lang"        aria-label="Français">FR</a>
+        <span class="mob-lang-sep" aria-hidden="true">·</span>
+        <a href="/pt-br/"     class="mob-lang"        aria-label="Português">PT</a>
+      </div>
+    </li>
+  </ul>
 </nav>
 
 <!-- HERO -->
@@ -1043,7 +1068,7 @@ footer{background:var(--p900);border-top:1px solid var(--border-dark);padding:48
       <div class="footer-brand">
         <a href="index.html" class="footer-logo">
           <div class="footer-logomark">
-            <img src="https://raw.githubusercontent.com/BruzelBrunft/myWebsite/refs/heads/main/SaferChat%20AI%20Transparent.png" alt="SaferChatAI" width="28" height="28" style="object-fit:contain;display:block">
+            <img src="https://raw.githubusercontent.com/BruzelBrunft/myWebsite/refs/heads/main/SaferChat%20AI%20Transparent.png" alt="SaferChatAI" width="28" height="28" style="object-fit:contain;display:block" loading="lazy">
           </div>
           <span>SaferChatAI</span>
         </a>
@@ -1225,161 +1250,219 @@ footer{background:var(--p900);border-top:1px solid var(--border-dark);padding:48
 </div><!-- end demo overlay -->
 
 <script>
-/* ── SCROLL: progress bar + back-to-top + nav bg ── */
 (function(){
-  const prog=document.getElementById('scroll-progress');
-  const topBtn=document.getElementById('back-top');
-  const sticky=document.getElementById('mob-sticky');
-  window.addEventListener('scroll',()=>{
-    const s=window.scrollY;
-    document.getElementById('nav').classList.toggle('scrolled',s>40);
-    if(prog){const h=document.documentElement.scrollHeight-window.innerHeight;prog.style.width=(h>0?s/h*100:0)+'%';}
-    if(topBtn)topBtn.classList.toggle('show',s>600);
-    if(sticky)sticky.classList.toggle('show',s>400);
-  },{passive:true});
-})();
+'use strict';
 
-/* ── SCROLLSPY — reliable bidirectional ── */
-(function(){
-  const IDS=['how-it-works','features','faq'];
-  function update(){
-    const scrollY=window.scrollY;
-    let current='';
-    IDS.forEach(id=>{
-      const el=document.getElementById(id);
-      // A section is "active" once its top has passed the nav (72px offset)
-      if(el&&el.getBoundingClientRect().top+scrollY-72<=scrollY+10)current=id;
-    });
-    document.querySelectorAll('#nav-links a[href^="#"]').forEach(a=>{
-      const match=a.getAttribute('href')==='#'+current;
-      a.classList.toggle('spy-active',match);
-    });
-  }
-  window.addEventListener('scroll',update,{passive:true});
-  update();
-})();
+/* ── SCROLL: progress + back-to-top + sticky + nav bg ── */
+var prog = document.getElementById('scroll-progress');
+var topBtn = document.getElementById('back-top');
+var sticky = document.getElementById('mob-sticky');
+function onScroll(){
+  var s = window.scrollY;
+  var nav = document.getElementById('nav');
+  if(nav) nav.classList.toggle('scrolled', s > 40);
+  if(prog){var h=document.documentElement.scrollHeight-window.innerHeight;prog.style.width=(h>0?s/h*100:0)+'%';}
+  if(topBtn) topBtn.classList.toggle('show', s > 600);
+  if(sticky) sticky.classList.toggle('show', s > 400);
+}
+window.addEventListener('scroll', onScroll, {passive:true});
 
-/* ── NAV: toggle, close, ESC, outside click ── */
-function toggleNav(){
-  const links=document.getElementById('nav-links');
-  const ham=document.getElementById('hamburger');
-  const open=links.classList.toggle('open');
-  ham.classList.toggle('active',open);
-  // close lang dropdown when nav opens
-  closeLangMenu();
+/* ── SCROLLSPY: reliable bidirectional ── */
+var SPY_IDS = ['how-it-works','features','faq'];
+function updateSpy(){
+  var s = window.scrollY;
+  var current = '';
+  SPY_IDS.forEach(function(id){
+    var el = document.getElementById(id);
+    if(el && el.getBoundingClientRect().top + s - 72 <= s + 8) current = id;
+  });
+  document.querySelectorAll('#nav-links-desktop a[href^="#"]').forEach(function(a){
+    a.classList.toggle('spy-active', a.getAttribute('href') === '#'+current);
+  });
 }
-function closeNav(){
-  document.getElementById('nav-links').classList.remove('open');
-  document.getElementById('hamburger').classList.remove('active');
-}
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeNav();closeLangMenu();}});
-document.addEventListener('click',e=>{
-  const nav=document.getElementById('nav');
-  if(nav&&!nav.contains(e.target)){closeNav();closeLangMenu();}
-});
-// Close nav on anchor link click
-document.querySelectorAll('#nav-links a[href^="#"]').forEach(a=>a.addEventListener('click',closeNav));
-
-/* ── LANGUAGE SWITCHER ── */
-function toggleLangMenu(){
-  const sw=document.getElementById('lang-switch');
-  const btn=sw.querySelector('.lang-btn');
-  const open=sw.classList.toggle('open');
-  btn.setAttribute('aria-expanded',open);
-}
-function closeLangMenu(){
-  const sw=document.getElementById('lang-switch');
-  if(sw){sw.classList.remove('open');sw.querySelector('.lang-btn')?.setAttribute('aria-expanded','false');}
-}
-// Auto-detect language on first visit, redirect once
-(function(){
-  const LANGS={de:'/de/',es:'/es/',fr:'/fr/','pt':'/pt-br/','pt-br':'/pt-br/'};
-  if(location.pathname!=='/'&&location.pathname!=='/index.html')return;
-  if(localStorage.getItem('lang-redirected'))return;
-  const pref=(navigator.language||'').toLowerCase().split('-')[0];
-  if(LANGS[pref]){
-    localStorage.setItem('lang-redirected','1');
-    location.href=LANGS[pref];
-  }
-})();
+window.addEventListener('scroll', updateSpy, {passive:true});
+updateSpy();
 
 /* ── SMOOTH SCROLL with nav offset ── */
-document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
-  const id=a.getAttribute('href').slice(1),el=document.getElementById(id);
-  if(el){e.preventDefault();window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-72,behavior:'smooth'});}
-}));
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click', function(e){
+    var id = a.getAttribute('href').slice(1);
+    var el = document.getElementById(id);
+    if(el){
+      e.preventDefault();
+      window.scrollTo({top: el.getBoundingClientRect().top + window.scrollY - 72, behavior:'smooth'});
+    }
+  });
+});
 
-/* ── REVEAL ── */
-const ro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.08});
-document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+/* ── NAV HAMBURGER ── */
+function toggleNav(){
+  var mob = document.getElementById('nav-links-mob');
+  var ham = document.getElementById('hamburger');
+  if(!mob||!ham) return;
+  var open = mob.classList.toggle('open');
+  ham.classList.toggle('active', open);
+  ham.setAttribute('aria-expanded', open);
+  if(open) closeLangMenu();
+}
+function closeNav(){
+  var mob = document.getElementById('nav-links-mob');
+  var ham = document.getElementById('hamburger');
+  if(mob) mob.classList.remove('open');
+  if(ham){ ham.classList.remove('active'); ham.setAttribute('aria-expanded','false'); }
+}
+// Expose globally (called from onclick attributes)
+window.toggleNav = toggleNav;
+
+// Close mobile nav on anchor click
+document.querySelectorAll('#nav-links-mob a[href^="#"]').forEach(function(a){
+  a.addEventListener('click', closeNav);
+});
+
+/* ── LANGUAGE SWITCHER (desktop) ── */
+function toggleLangMenu(){
+  var sw = document.getElementById('lang-switch');
+  var btn = document.getElementById('lang-btn');
+  if(!sw) return;
+  var open = sw.classList.toggle('open');
+  if(btn) btn.setAttribute('aria-expanded', open);
+  if(open) closeNav();
+}
+function closeLangMenu(){
+  var sw = document.getElementById('lang-switch');
+  var btn = document.getElementById('lang-btn');
+  if(sw) sw.classList.remove('open');
+  if(btn) btn.setAttribute('aria-expanded','false');
+}
+window.toggleLangMenu = toggleLangMenu;
+
+// Wire up lang-btn click (avoid inline onclick in HTML for CSP compatibility)
+var langBtn = document.getElementById('lang-btn');
+if(langBtn) langBtn.addEventListener('click', function(e){ e.stopPropagation(); toggleLangMenu(); });
+
+// Close on outside click or ESC
+document.addEventListener('click', function(e){
+  var nav = document.getElementById('nav');
+  if(nav && !nav.contains(e.target)){ closeNav(); closeLangMenu(); }
+});
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape'){ closeNav(); closeLangMenu(); }
+});
+
+// One-time first-visit language redirect
+(function(){
+  var LANGS = {de:'/de/',es:'/es/',fr:'/fr/',pt:'/pt-br/','pt-br':'/pt-br/'};
+  var p = location.pathname;
+  if(p !== '/' && p !== '/index.html') return;
+  if(localStorage.getItem('sca-lang-init')) return;
+  var lang = (navigator.language||'').toLowerCase().split('-')[0];
+  localStorage.setItem('sca-lang-init','1');
+  if(LANGS[lang]) location.href = LANGS[lang];
+})();
+
+/* ── REVEAL on scroll ── */
+var revealObs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold: 0.08});
+document.querySelectorAll('.reveal').forEach(function(el){ revealObs.observe(el); });
 
 /* ── FAQ ── */
-function toggleFaq(btn){
-  const it=btn.closest('.faq-item'),o=it.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
-  if(!o)it.classList.add('open');
-}
+window.toggleFaq = function(btn){
+  var it = btn.closest('.faq-item');
+  var wasOpen = it.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(function(i){ i.classList.remove('open'); });
+  if(!wasOpen) it.classList.add('open');
+};
 
 /* ── MOBILE DEMO ── */
-function openDemo(){
+window.openDemo = function(){
   document.getElementById('demo-overlay').classList.add('open');
-  document.body.style.overflow='hidden';
-  setTimeout(()=>{
-    const d=document.getElementById('mob-drawer'),b=document.getElementById('mob-backdrop');
-    if(d&&b){d.classList.add('open');b.classList.add('open');setTimeout(()=>closeMobDrawer(),2000);}
-  },1500);
+  document.body.style.overflow = 'hidden';
+  setTimeout(function(){
+    var d=document.getElementById('mob-drawer'), b=document.getElementById('mob-backdrop');
+    if(d&&b){ d.classList.add('open'); b.classList.add('open'); setTimeout(function(){ closeMobDrawer(); }, 2000); }
+  }, 1500);
+};
+window.closeDemo = function(){
+  document.getElementById('demo-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+};
+window.toggleMobDrawer = function(){
+  document.getElementById('mob-drawer').classList.toggle('open');
+  document.getElementById('mob-backdrop').classList.toggle('open');
+};
+function closeMobDrawer(){
+  var d=document.getElementById('mob-drawer'), b=document.getElementById('mob-backdrop');
+  if(d) d.classList.remove('open');
+  if(b) b.classList.remove('open');
 }
-function closeDemo(){document.getElementById('demo-overlay').classList.remove('open');document.body.style.overflow='';}
-function toggleMobDrawer(){document.getElementById('mob-drawer').classList.toggle('open');document.getElementById('mob-backdrop').classList.toggle('open');}
-function closeMobDrawer(){document.getElementById('mob-drawer').classList.remove('open');document.getElementById('mob-backdrop').classList.remove('open');}
-function mobSwitchCh(ch){
-  document.querySelectorAll('.mob-ch[data-mob-ch]').forEach(el=>{el.classList.toggle('mob-active',el.dataset.mobCh===ch);if(el.dataset.mobCh===ch)el.classList.remove('mob-unread');});
-  document.querySelectorAll('[data-mob-content]').forEach(el=>{const a=el.dataset.mobContent===ch;el.style.display=a?'flex':'none';el.style.flexDirection=a?'column':'';el.style.flex=a?'1':'';el.style.overflow=a?'hidden':'';el.classList.toggle('mob-active',a);});
-  document.getElementById('mob-ch-title').textContent=ch;
-  if(ch==='general'){const b=document.getElementById('mob-gbadge');if(b){b.style.opacity='0';setTimeout(()=>b?.remove(),300);}}
+window.closeMobDrawer = closeMobDrawer;
+
+window.mobSwitchCh = function(ch){
+  document.querySelectorAll('.mob-ch[data-mob-ch]').forEach(function(el){
+    el.classList.toggle('mob-active', el.dataset.mobCh===ch);
+    if(el.dataset.mobCh===ch) el.classList.remove('mob-unread');
+  });
+  document.querySelectorAll('[data-mob-content]').forEach(function(el){
+    var a = el.dataset.mobContent===ch;
+    el.style.display=a?'flex':'none'; el.style.flexDirection=a?'column':'';
+    el.style.flex=a?'1':''; el.style.overflow=a?'hidden':'';
+    el.classList.toggle('mob-active',a);
+  });
+  document.getElementById('mob-ch-title').textContent = ch;
+  if(ch==='general'){var b=document.getElementById('mob-gbadge');if(b){b.style.opacity='0';setTimeout(function(){if(b.parentNode)b.parentNode.removeChild(b);},300);}}
   closeMobDrawer();
-}
-function mobModAction(btn,type){
-  const MAP={delete:['🗑️ Deleted','#2a7a4e','Message deleted.'],warn:['✅ Warned','#5865F2','Warning DM sent.'],timeout:['⏳ Timed out','#C8956A','Timed out 10 min.'],fp:['✅ Noted','#5A8A72','Marked not harmful.']};
-  const[label,color,note]=MAP[type]||[];if(!label)return;
-  btn.closest('.mob-vbtns').querySelectorAll('.mob-vbtn').forEach(b=>{b.disabled=true;b.style.opacity=(b===btn)?'1':'0.25';});
-  btn.textContent=label;btn.style.background=color;
-  const n=document.createElement('div');n.className='mob-action-note';n.textContent='✓ '+note;btn.closest('.mob-embed').appendChild(n);
-}
-// Swipe right → open drawer, left → close
+};
+
+window.mobModAction = function(btn,type){
+  var MAP={delete:['🗑️ Deleted','#2a7a4e','Message deleted.'],warn:['✅ Warned','#5865F2','Warning DM sent.'],timeout:['⏳ Timed out','#C8956A','Timed out 10 min.'],fp:['✅ Noted','#5A8A72','Marked not harmful.']};
+  var r=MAP[type]; if(!r) return;
+  btn.closest('.mob-vbtns').querySelectorAll('.mob-vbtn').forEach(function(b){b.disabled=true;b.style.opacity=(b===btn)?'1':'0.25';});
+  btn.textContent=r[0]; btn.style.background=r[1];
+  var n=document.createElement('div'); n.className='mob-action-note'; n.textContent='✓ '+r[2];
+  btn.closest('.mob-embed').appendChild(n);
+};
+
+// Swipe gesture for demo overlay
 (function(){
-  let sx=0,sy=0;
-  const ov=document.getElementById('demo-overlay');
-  if(!ov)return;
-  ov.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});
-  ov.addEventListener('touchend',e=>{
-    const dx=e.changedTouches[0].clientX-sx,dy=Math.abs(e.changedTouches[0].clientY-sy);
-    if(dy>50)return;
-    if(dx>60){document.getElementById('mob-drawer').classList.add('open');document.getElementById('mob-backdrop').classList.add('open');}
-    else if(dx<-60)closeMobDrawer();
+  var ov=document.getElementById('demo-overlay'); if(!ov) return;
+  var sx=0,sy=0;
+  ov.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});
+  ov.addEventListener('touchend',function(e){
+    var dx=e.changedTouches[0].clientX-sx, dy=Math.abs(e.changedTouches[0].clientY-sy);
+    if(dy>50) return;
+    if(dx>60){var d=document.getElementById('mob-drawer'),b=document.getElementById('mob-backdrop');if(d)d.classList.add('open');if(b)b.classList.add('open');}
+    else if(dx<-60) closeMobDrawer();
   },{passive:true});
 })();
 
 /* ── MOD ACTIONS (desktop demo) ── */
-function modAction(btn,type){
-  const MAP={delete:['✅ Deleted','#2a7a4e','🗑️ Message deleted.'],warn:['✅ Warned','#5865F2','⚠️ Warning DM sent.'],timeout:['✅ Timed out','#C8956A','⏰ Timed out 10 min.'],fp:['✅ Noted','#5A8A72','🧠 Marked false positive.'],ban:['✅ Banned','#8B2222','🔨 Permanently banned.']};
-  const[label,color,note]=MAP[type]||[];if(!label)return;
-  btn.closest('.vbtns').querySelectorAll('.vbtn').forEach(b=>{b.disabled=true;b.style.cursor='default';b.style.opacity=(b===btn)?'1':'0.3';});
-  btn.textContent=label;btn.style.background=color;
-  const n=document.createElement('div');n.className='action-note';n.textContent=note;btn.closest('.dc-embed').appendChild(n);
-}
+window.modAction = function(btn,type){
+  var MAP={delete:['✅ Deleted','#2a7a4e','🗑️ Message deleted.'],warn:['✅ Warned','#5865F2','⚠️ Warning DM sent.'],timeout:['✅ Timed out','#C8956A','⏰ Timed out 10 min.'],fp:['✅ Noted','#5A8A72','🧠 Marked false positive.'],ban:['✅ Banned','#8B2222','🔨 Permanently banned.']};
+  var r=MAP[type]; if(!r) return;
+  btn.closest('.vbtns').querySelectorAll('.vbtn').forEach(function(b){b.disabled=true;b.style.cursor='default';b.style.opacity=(b===btn)?'1':'0.3';});
+  btn.textContent=r[0]; btn.style.background=r[1];
+  var n=document.createElement('div'); n.className='action-note'; n.textContent=r[2];
+  btn.closest('.dc-embed').appendChild(n);
+};
 
 /* ── CHANNEL SWITCHING ── */
-const CH={'general':{topic:'General chat · 1,204 members'},'announcements':{topic:'Server announcements — read only'},'mod-logs':{topic:'SaferChatAI mod reports · visible to mods only 🔒'}};
-function switchCh(ch){
-  document.querySelectorAll('.dc-ch[data-ch]').forEach(el=>el.classList.toggle('active',el.dataset.ch===ch));
-  document.querySelectorAll('[data-content]').forEach(el=>{if(el.dataset.content===ch){el.style.display='flex';el.style.flexDirection='column';}else{el.style.display='none';}});
-  document.getElementById('dc-ch-title').textContent=ch;
-  document.getElementById('dc-ch-topic').textContent=(CH[ch]||{}).topic||'';
-  document.getElementById('dc-input-ch').textContent='#'+ch;
-  if(ch==='general'){const b=document.getElementById('general-badge'),it=document.querySelector('[data-ch="general"]');if(b){b.style.transition='opacity .3s';b.style.opacity='0';setTimeout(()=>b.remove(),300);}if(it)it.classList.remove('unread');}
-}
+var CH={'general':{topic:'General chat · 1,204 members'},'announcements':{topic:'Server announcements — read only'},'mod-logs':{topic:'SaferChatAI mod reports · visible to mods only 🔒'}};
+window.switchCh = function(ch){
+  document.querySelectorAll('.dc-ch[data-ch]').forEach(function(el){el.classList.toggle('active',el.dataset.ch===ch);});
+  document.querySelectorAll('[data-content]').forEach(function(el){
+    if(el.dataset.content===ch){el.style.display='flex';el.style.flexDirection='column';}else{el.style.display='none';}
+  });
+  var t=document.getElementById('dc-ch-title'),p=document.getElementById('dc-ch-topic'),i=document.getElementById('dc-input-ch');
+  if(t)t.textContent=ch; if(p)p.textContent=(CH[ch]||{}).topic||''; if(i)i.textContent='#'+ch;
+  if(ch==='general'){
+    var b=document.getElementById('general-badge'),it=document.querySelector('[data-ch="general"]');
+    if(b){b.style.transition='opacity .3s';b.style.opacity='0';setTimeout(function(){if(b.parentNode)b.parentNode.removeChild(b);},300);}
+    if(it)it.classList.remove('unread');
+  }
+};
 
+})(); // end IIFE
 </script>
 </body>
 </html>
