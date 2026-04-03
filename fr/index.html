@@ -602,6 +602,45 @@ footer{background:var(--p900);border-top:1px solid var(--border-dark);padding:48
 }
 
 </style>
+  <!-- ══ Schema.org structured data ══
+     Paste this block directly before the closing </head> tag in index.html
+     (and in de/index.html, es/index.html, fr/index.html, pt-br/index.html
+      with the matching inLanguage value)                                   -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "SaferChatAI",
+  "applicationCategory": "SecurityApplication",
+  "applicationSubCategory": "Discord Moderation Bot",
+  "operatingSystem": "Discord",
+  "description": "AI-powered Discord moderation bot that understands context — catches harassment, hate speech and scam links that AutoMod and MEE6 miss. No auto-bans. Always human control.",
+  "url": "https://saferchat.org",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock"
+  },
+  "featureList": [
+    "Context-aware AI moderation",
+    "Harassment and hate speech detection",
+    "Scam link detection",
+    "No auto-bans — human-reviewed moderation",
+    "Two-stage AI pipeline",
+    "Word filter",
+    "Multilingual support"
+  ],
+  "inLanguage": ["en", "de", "es", "fr", "pt-BR"],
+  "isAccessibleForFree": true,
+  "softwareVersion": "beta",
+  "provider": {
+    "@type": "Person",
+    "name": "Anton Eitenbichler"
+  }
+}
+</script>
 </head>
 <body>
 
